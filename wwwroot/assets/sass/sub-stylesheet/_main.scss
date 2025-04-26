@@ -1,0 +1,687 @@
+/*==== @@@@ Member Section start here  @@@@ ======= */
+
+.member-button-group {
+    margin-top: 40px;
+
+    .lab-btn {
+        @extend %border-radius-2;
+
+        &:first-child {
+            @extend %mr-20;
+
+            @include breakpoint (max-sm) {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+//top-member section
+.top-member-section {
+    .filters-button-group {
+        @extend %mb-30;
+        row-gap: 10px;
+
+        .filter-btn {
+            @extend %bg-primary;
+            @extend %border-radius-2;
+            padding: .5rem 1rem;
+            @extend %pointer;
+            @extend %mr-10;
+            &.is-checked {
+                background: $theme-color;
+            }
+            &:last-child {
+                @extend %mr-0;
+            }
+        }
+    }
+
+    .filter-item {
+        width: calc(100% / 2);
+        @extend %p-10;
+
+        @include breakpoint(md) {
+            width: calc(100% / 3);
+        }
+
+        @include breakpoint(lg) {
+            width: calc(100% / 4);
+        }
+
+        @include breakpoint(xl) {
+            width: calc(100% / 5);
+        }
+    }
+
+}
+
+/*==== @@@@ Member Section End here  @@@@ ======= */
+
+
+/*==== @@@@ Working Process Section start here  @@@@ ======= */
+
+.work-section {
+    background: url(../images/work/bg.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    @extend %hidden;
+    .section-wrapper {
+        @include breakpoint(lg) {
+            .col-lg-4 {
+                .work-item {
+                    position: relative;
+
+                    &:after {
+                        position: absolute;
+                        content: "";
+                        top: 50px;
+                        right: -90px;
+                        width: 145px;
+                        height: 40px;
+                        background: url(../images/work/arrow.png);
+                    }
+                }
+
+                &:last-child {
+                    .work-item {
+                        &:after {
+                            display: none;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+/*==== @@@@ Working Process Section end here  @@@@ ======= */
+
+
+/*==== @@@@ Clients review Section start here  @@@@ ======= */
+
+.clints-section {
+    @extend %hidden;
+
+    .section-wrapper {
+        height: 500px;
+        background: url(../images/map.png);
+        background-size: cover;
+
+        .clients {
+            @extend %rel;
+
+            .client-list {
+                @extend %abs;
+
+                @include breakpoint(max-sm) {
+                    position: static !important;
+                    margin: 15px;
+                }
+
+                &.active {
+                    @include breakpoint(max-sm) {
+                        .client-content {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+                }
+
+                &:hover {
+                    .client-content {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+
+                    .client-thumb {
+
+                        &::after,
+                        &::before {
+                            -webkit-animation: ripple 1.05s infinite;
+                            -moz-animation: ripple 1.05s infinite;
+                            -ms-animation: ripple 1.05s infinite;
+                            -o-animation: ripple 1.05s infinite;
+                            animation: ripple 1.05s infinite;
+                        }
+                    }
+                }
+
+                &:nth-child(1),
+                &:nth-child(2) {
+                    @include breakpoint(md) {
+                        .client-content {
+                            top: 75px;
+                            bottom: auto;
+                            left: 0;
+                            right: auto;
+
+                            &::after {
+                                top: -15px;
+                                bottom: auto;
+                                left: 25px;
+                                right: auto;
+                                box-shadow: -3px 0px 0 0 $white-color;
+                            }
+                        }
+                    }
+                }
+
+                &:nth-child(3),
+                &:nth-child(7) {
+                    @include breakpoint(md) {
+                        .client-content {
+                            top: 0px;
+                            bottom: auto;
+                            right: 75px;
+                            box-shadow: -5px 5px 0 0 $white-color;
+
+                            &::after {
+                                box-shadow: 3px 0 0 $white-color;
+                                top: 0;
+                                bottom: auto;
+                                right: -12px;
+                                left: auto;
+                                z-index: -1;
+                            }
+                        }
+                    }
+                }
+
+                &:nth-child(4) {
+                    @include breakpoint(md) {
+                        .client-content {
+                            left: 0;
+                            right: auto;
+                            box-shadow: -5px -5px 0 0 $white-color;
+                            bottom: 75px;
+
+                            &::after {
+                                left: 25px;
+                                right: auto;
+                                box-shadow: 0 3px 0 0 $white-color;
+                            }
+                        }
+                    }
+                }
+
+                &:nth-child(1) {
+                    top: 95px;
+                    left: 5%;
+                }
+
+                &:nth-child(2) {
+                    top: 40px;
+                    left: 35%;
+
+                    .client-thumb {
+
+                        &::after,
+                        &::before {
+                            background: #7256df;
+                        }
+                    }
+                }
+
+                &:nth-child(3) {
+                    top: 90px;
+                    left: 75%;
+
+                    .client-thumb {
+
+                        &::after,
+                        &::before {
+                            background: #eb59d5;
+                        }
+                    }
+                }
+
+                &:nth-child(4) {
+                    top: 400px;
+                    left: 30%;
+
+                    .client-thumb {
+
+                        &::after,
+                        &::before {
+                            background: #37d87b;
+                        }
+                    }
+                }
+
+                &:nth-child(5) {
+                    top: 265px;
+                    left: 47%;
+
+                    .client-content {
+                        box-shadow: -5px -5px 0 0 $white-color;
+                        bottom: 75px;
+
+                        &:after {
+                            box-shadow: 0 3px 0 0 $white-color;
+                        }
+
+                    }
+
+                    .client-thumb {
+
+                        &::after,
+                        &::before {
+                            background: #fe7855;
+                        }
+                    }
+                }
+
+                &:nth-child(6) {
+                    top: 408px;
+                    left: 80%;
+
+                    .client-content {
+                        box-shadow: -5px -5px 0 0 $white-color;
+                        bottom: 75px;
+
+                        &:after {
+                            box-shadow: 0 3px 0 0 $white-color;
+                        }
+                    }
+
+                    .client-thumb {
+
+                        &::after,
+                        &::before {
+                            background: #ffc313;
+                        }
+                    }
+                }
+
+                &:nth-child(7) {
+                    top: 75px;
+                    left: 75%;
+                    left: 70%;
+
+                    .client-thumb {
+
+                        &::after,
+                        &::before {
+                            background: #26aeea;
+                        }
+                    }
+                }
+
+                .client-thumb {
+                    width: 50px;
+                    height: 50px;
+                    @include border-radius(100%);
+                    cursor: pointer;
+                    @extend %rel;
+
+                    &::after,
+                    &::before {
+                        @extend %abs;
+                        display: inline-block;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        border-radius: 50%;
+                        background: #0ca5f1;
+                    }
+
+                    &::after {
+                        width: 75px;
+                        height: 75px;
+                        opacity: 0.09;
+                    }
+
+                    &::before {
+                        width: 65px;
+                        height: 65px;
+                        opacity: 0.2;
+                    }
+
+                    img {
+                        @include border-radius(100%);
+                        @extend %rel;
+                        z-index: 1;
+                    }
+                }
+
+                .client-content {
+                    opacity: 0;
+                    visibility: hidden;
+                    @extend %abs;
+                    width: 200px;
+                    padding: 20px;
+                    @extend %bg-theme;
+                    border-radius: 4px;
+                    box-shadow: 5px 5px 0 0 $white-color;
+                    bottom: 50%;
+                    right: 50%;
+                    z-index: 3;
+                    transform: translate(50%, 50%);
+
+                    @include breakpoint(max-sm) {
+                        width: 250px;
+                        right: 40%;
+                    }
+
+                    @include breakpoint(md) {
+                        width: 370px;
+                        bottom: 50px;
+                        right: -30px;
+                        transform: translate(0%, 0%);
+                    }
+
+                    &:after {
+                        @extend %abs;
+                        width: 20px;
+                        height: 20px;
+                        bottom: 0;
+                        right: 25px;
+                        @extend %bg-theme;
+                        transform: rotate(45deg) translateY(10px);
+
+                        @include breakpoint(max-md) {
+                            display: none;
+                        }
+                    }
+
+                    p {
+                        margin-bottom: 10px;
+                    }
+
+                    .client-info {
+                        @extend %flex;
+                        justify-content: space-between;
+
+                        .name-desi {
+                            h6 {
+                                display: inline-block;
+                            }
+
+                            span {
+                                color: $desc-color;
+                                @extend %rel;
+                                margin-left: 10px;
+
+                                &::after {
+                                    @extend %abs;
+                                    top: 50%;
+                                    left: -6px;
+                                    width: 5px;
+                                    height: 1px;
+                                    background: $desc-color;
+                                    transform: translateY(-50%);
+                                }
+                            }
+                        }
+
+                        .rating {
+                            ul {
+                                @extend %flex;
+                                margin-bottom: 0 !important;
+
+                                li {
+                                    color: $star;
+                                    margin: 1px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*==== @@@@ Clients review Section end here  @@@@ ======= */
+
+
+/*==== @@@@ App Section start here  @@@@ ======= */
+.app-section {
+
+
+    .section-wrapper {
+        @extend %rel;
+
+
+        &:after {
+            @include breakpoint (xl) {
+                position: absolute;
+                content: "";
+                right: 29%;
+                bottom: 13%;
+                background: url(../images/app/shape.png);
+                width: 280px;
+                height: 365px;
+                animation: up-down 8s infinite cubic-bezier(0.46, 0.03, 0.52, 0.96);
+            }
+        }
+
+
+        .app-content {
+            h4 {
+                @extend %mb-0;
+            }
+
+            p {
+                max-width: 540px;
+                margin-bottom: 50px;
+            }
+
+            .app-download {
+                li {
+                    @extend %d-inline-block;
+                    @include transition($transition);
+
+                    &:first-child {
+                        @extend %mb-10;
+
+                        @include breakpoint(sm) {
+                            margin-bottom: 0;
+                            margin-right: 10px;
+                        }
+
+                        @include breakpoint(lg) {
+                            margin-right: 24px;
+                        }
+                    }
+
+
+
+                    a {
+                        @extend %bg-white;
+                        @extend %border-radius-2;
+                        @extend %d-inline-block;
+                        padding: 8px 16px;
+
+                        @include breakpoint(lg) {
+                            padding: 1rem 1.5rem;
+                        }
+
+                        .app-thumb {
+                            @extend %mr-10;
+
+                            @include breakpoint(lg) {
+                                margin-right: 20px;
+                            }
+                        }
+
+                        .app-content {
+                            p {
+                                color: $grey-color;
+                                @extend %mb-0;
+                            }
+
+                            h4 {
+
+                                color: $theme-color;
+                                @extend %mb-0;
+                                margin-top: -7px;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        transform: translateY(-5px);
+                    }
+                }
+
+            }
+        }
+
+        .mobile-app {
+            @extend %abs;
+            right: 0;
+            bottom: 0;
+            display: none;
+            z-index: 1;
+
+            @include breakpoint(md) {
+                display: inline-block;
+                width: 25%;
+            }
+
+            @include breakpoint(lg) {
+                display: inline-block;
+                width: auto;
+            }
+        }
+    }
+}
+
+/*==== @@@@ App Section end here  @@@@ ======= */
+
+
+/*==== @@@@ member-page start here  @@@@ ======= */
+.member-page-section {
+    margin-top: -40px;
+    padding-bottom: 35px;
+
+    @include breakpoint(lg) {
+        padding-bottom: 100px;
+    }
+
+    .member-filter {
+        margin-bottom: 70px;
+    }
+
+    .member-wrapper {
+        .member-info {
+            @extend %flex;
+            @extend %justify-between;
+
+            .all-member {
+                @extend %flex;
+
+                @include breakpoint(max-sm) {
+                    margin-bottom: 10px;
+                }
+
+                p {
+                    @extend %mb-0;
+                    padding: .5rem 1rem;
+                    font-family: $jost;
+                    @extend %border-radius-2;
+
+                    &:first-child {
+                        @extend %bg-primary;
+                    }
+
+                    &:last-child {
+                        @extend %bg-theme;
+                        @extend %rel;
+
+                        &:before {
+                            @extend %abs;
+                            left: -10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            width: 0;
+                            height: 0;
+                            border-style: solid;
+                            border-width: 12.5px 21.7px 12.5px 0;
+                            border-color: transparent $theme-color transparent transparent;
+                        }
+                    }
+                }
+            }
+
+            .member-cat {
+                .custom-select {
+                    select {
+                        background: $primary-color !important;
+                        padding: .5rem 1rem;
+                        padding-right: 2rem;
+                        border: none;
+                        outline: none;
+
+                        option {
+                            border: 1px solid $theme-color;
+                        }
+                    }
+                }
+            }
+        }
+
+        .member-item {
+            box-shadow: 0px 0px 10px 0px rgba(148, 148, 148, 0.2);
+
+        }
+    }
+}
+
+/*==== @@@@ member-page end here  @@@@ ======= */
+
+
+/*==== @@@@ Active Group-page start here  @@@@ ======= */
+.group-page-section {
+    padding-bottom: 70px;
+
+    @include breakpoint(lg) {
+        padding-bottom: 110px;
+    }
+}
+
+/*==== @@@@ Active Group-page end here  @@@@ ======= */
+
+
+/*==== @@@@ Pricing-plan start here  @@@@ ======= */
+.pricing-section {
+    .section-header {
+        margin-bottom: 70px;
+    }
+}
+
+/*==== @@@@ Pricing-plan end here  @@@@ ======= */
+
+
+/*  @@@@@@@@    404 Error Page       @@@@@@@@@@@   */
+.fore-zero {
+    .section-wrapper {
+        .zero-item {
+            padding: 60px;
+            @extend %text-center;
+            @extend %bg-primary;
+            box-shadow: 0px 0px 10px 0px rgba($theme-color, $alpha: .20);
+            border-radius: 5px;
+
+
+            .zero-content {
+                @extend %mt-20;
+
+                p {
+                    @extend %mb-30;
+                }
+
+                .lab-btn {
+                    @extend %bg-theme;
+                    color: $white-color;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}

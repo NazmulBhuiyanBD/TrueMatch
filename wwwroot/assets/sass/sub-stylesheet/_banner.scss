@@ -1,0 +1,350 @@
+/* @@@@@@@@@@@@@  Banner Section Start Here  @@@@@@@@@@@@@@ */
+.banner-section {
+    background-image: url(../images/banner/bg.jpg);
+    background-size: cover;
+    padding-top: 200px;
+    @extend %rel;
+    @extend %hidden;
+
+    @include breakpoint(sm) {
+        padding-top: 270px;
+    }
+
+    .section-wrapper {
+        .banner-content {
+            .intro-form {
+                max-width: 420px;
+                border: 5px solid $white-color;
+                padding: 40px 30px;
+                @extend %rel;
+                margin-bottom: 100px;
+
+                @include breakpoint(max-lg) {
+                    margin: 0 auto;
+                    margin-bottom: 100px;
+                }
+
+                &::before {
+                    @extend %abs;
+                    width: 150px;
+                    height: 160px;
+                    background: url(../images/banner/shape-top.png);
+                    top: -50px;
+                    right: -70px;
+                }
+
+                &::after {
+                    @extend %abs;
+                    width: 130px;
+                    height: 150px;
+                    background: url(../images/banner/shape-bottom.png);
+                    bottom: -50px;
+                    left: -65px;
+
+                }
+
+                * {
+                    color: $white-color;
+                    font-family: $jost;
+                }
+
+                .intro-form-inner {
+                    h3 {}
+
+                    p {
+                        line-height: 30px;
+                        max-width: 315px;
+
+                    }
+
+
+
+                    .social-list {
+                        @extend %flex;
+                        @extend %justify-between;
+
+                        @include breakpoint(max-sm) {
+                            justify-content: flex-start;
+                            row-gap: 10px;
+                            column-gap: 10px;
+                        }
+
+                        .google {
+
+                            a {
+                                @extend %bg-white;
+                                padding: 13px 30px;
+                                @extend %border-radius-2;
+                                @extend %d-inline-block;
+
+                                @include breakpoint(max-sm) {
+                                    padding: 13px 48px;
+
+                                }
+
+                                span {
+                                    color: $grey-color;
+                                }
+                            }
+
+
+                        }
+
+                        .facebook,
+                        .twitter {
+                            a {
+                                line-height: 50px;
+                                width: 50px;
+                                height: 50px;
+                                @extend %border-radius-2;
+                                @extend %text-center;
+                                @extend %d-inline-block;
+                            }
+                        }
+
+                        .facebook {
+                            background-color: $facebook;
+                        }
+
+                        .twitter {
+                            background-color: $twitter;
+                        }
+
+                        .google,
+                        .facebook,
+                        .twitter {
+                            &:hover {
+                                box-shadow: 0 4px 5px rgba($theme-color, $alpha: .50);
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        .banner-thumb {
+            @extend %rel;
+            z-index: 2;
+        }
+    }
+
+    .all-shapes {
+        display: none;
+
+        @include breakpoint(lg) {
+            display: block;
+        }
+
+        .banner-shape {
+            @extend %abs;
+
+        }
+
+        .shape-1 {
+            animation: up-down 6s infinite linear;
+            top: 38%;
+            right: 5%;
+
+            @include breakpoint (xl) {
+                top: 28%;
+                right: 5%;
+            }
+
+            @include breakpoint(xxxl) {
+                top: 28%;
+                right: 28%;
+            }
+        }
+
+        .shape-2 {
+            animation: angle-move 5s infinite cubic-bezier(.46, .03, .52, .96);
+            top: 40%;
+            right: 19%;
+
+            @include breakpoint (xl) {
+                top: 31%;
+                right: 17%;
+            }
+
+            @include breakpoint(xxxl) {
+                top: 30%;
+                right: 37%;
+            }
+        }
+
+        .shape-3 {
+            animation: zoom 7s infinite;
+            top: 59%;
+            right: 38%;
+
+            @include breakpoint (xl) {
+                top: 52%;
+                right: 36%;
+            }
+
+            @include breakpoint(xxxl) {
+                top: 52%;
+                right: 41%;
+            }
+        }
+
+        .shape-4 {
+            animation: up-down 5s infinite ease-in-out;
+            top: 26%;
+            right: 26%;
+
+            @include breakpoint (xl) {
+                top: 21%;
+                right: 34%;
+            }
+
+            @include breakpoint(xxxl) {
+                top: 36%;
+                right: 42%;
+            }
+        }
+
+        .shape-5 {
+            animation: angle-move 5s infinite ease-in-out;
+            top: 50%;
+            right: 45%;
+
+            @include breakpoint (xl) {
+                top: 46%;
+                right: 46%;
+            }
+
+            @include breakpoint(xxxl) {
+                top: 78%;
+                right: 49%;
+            }
+        }
+
+        .shape-6 {
+            animation: up-down 5s infinite ease-in-out;
+            top: 32%;
+            right: 30%;
+
+            @include breakpoint (xl) {
+                top: 26%;
+                right: 37%;
+            }
+
+            @include breakpoint(xxxl) {
+                top: 42%;
+                right: 44%;
+            }
+        }
+
+        .shape-7 {
+            animation: rotate 10s infinite linear;
+            top: 62%;
+            right: 44%;
+
+            @include breakpoint (xl) {
+                top: 56%;
+                right: 47%;
+            }
+
+            @include breakpoint(xxxl) {
+                top: 62%;
+                right: 50%;
+            }
+        }
+
+        .shape-8 {
+            animation: bounce-1 5s infinite linear;
+            top: 25%;
+            right: 45%;
+
+            @include breakpoint (xl) {
+                top: 21%;
+                right: 50%;
+            }
+
+            @include breakpoint(xxxl) {
+                top: 35%;
+                right: 52%;
+            }
+        }
+    }
+}
+
+.banner-form {
+
+    .gender,
+    .person,
+    .age,
+    .city,
+    .interest {
+        @extend %w-100;
+        @extend %flex;
+        @extend %align-items-center;
+        @extend %justify-between;
+        @extend %mb-10;
+
+        .left {
+            width: 30%;
+
+            @extend %rel;
+
+            &:after {
+                @extend %abs;
+                content: ":";
+                right: 10px;
+            }
+        }
+
+        .right {
+            width: calc(100% - 30%);
+
+        }
+
+        input,
+        select {
+            border: 1px solid rgba($white-color, $alpha: .10);
+            border-radius: none;
+            padding: 10px 15px;
+            outline: none;
+            background: transparent !important;
+
+            option {
+                color: $title-color;
+                background: rgba($body-color, $alpha: .80) !important;
+            }
+        }
+    }
+
+    button {
+        @extend %bg-theme;
+        color: $white-color;
+        border: none;
+        @extend %w-100;
+        padding: 13px;
+        @extend %border-radius-2;
+        @extend %mb-10;
+    }
+
+    .age {
+        .right {
+            .custom-select {
+                width: 47%;
+            }
+        }
+    }
+
+    .city {
+        @extend %mb-30;
+    }
+}
+
+//input type text placeholder
+
+input,
+textarea {
+    &::placeholder {
+        color: rgba($white-color, $alpha: .50);
+    }
+
+}

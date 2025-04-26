@@ -1,0 +1,184 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- ==========Page Header Section Start Here========== -->
+<section class="page-header-section style-1" style="background:url(~/assets/images/page-header.jpg)">
+    <div class="container">
+        <div class="page-header-content">
+            <div class="page-header-inner">
+                <div class="page-title">
+                    <h2>Member Single Profile</h2>
+                </div>
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">William Smith</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ==========Page Header Section Ends Here========== -->
+<!-- ==========Profile section start ========== -->
+<section class="profile-section padding-tb">
+    <div class="container">
+        <div class="section-wrapper">
+            <div class="member-profile">
+                <div class="profile-item">
+                    <div class="profile-cover">
+                        <img src="~/assets/images/profile/cover.jpg" alt="cover-pic">
+                        <div class="edit-photo custom-upload">
+                            <div class="file-btn">
+                                <i class="icofont-camera"></i>
+                                Edit Photo
+                            </div>
+                            <input type="file">
+                        </div>
+                    </div>
+                    <div class="profile-information">
+                        <div class="profile-pic">
+                            <img src="~/assets/images/profile/Profile.jpg" alt="DP">
+                            <div class="custom-upload">
+                                <div class="file-btn">
+                                    <span class="d-none d-lg-inline-block">
+                                        <i class="icofont-camera"></i>
+                                        Edit
+                                    </span>
+                                    <span class="d-lg-none mr-0"><i class="icofont-plus"></i></span>
+                                </div>
+                                <input type="file">
+                            </div>
+                        </div>
+                        <div class="profile-name">
+                            <h4>William Smith</h4>
+                            <p>Active 02 Minutes Ago</p>
+                        </div>
+                        <ul class="profile-contact">
+                            <li>
+                                <a href="#">
+                                    <div class="icon"><i class="icofont-user"></i></div>
+                                    <div class="text">
+                                        <p>Add Friends</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="icon"><i class="icofont-envelope"></i></div>
+                                    <div class="text">
+                                        <p>Public Message</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="icon"><i class="icofont-envelope"></i></div>
+                                    <div class="text">
+                                        <p>Private Message</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="profile-item d-none">
+                    <div class="lab-inner">
+                        <div class="lab-thumb">
+                            <a href="#"><img src="~/assets/images/profile/Profile.jpg" alt="profile"></a>
+                        </div>
+                        <div class="lab-content">
+                            <div class="profile-name">
+                                <div class="p-name-content">
+                                    <h4>William Smith</h4>
+                                    <p>Active 02 Minutes Ago</p>
+                                </div>
+
+                                <div class="contact-button">
+                                    <button class="contact-btn">
+                                        <i class="icofont-info-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <ul class="profile-contact">
+                                <li>
+                                    <a href="#">
+                                        <div class="icon"><i class="icofont-user"></i></div>
+                                        <div class="text">
+                                            <p>Add Friends</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="icon"><i class="icofont-envelope"></i></div>
+                                        <div class="text">
+                                            <p>Publice Message</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="icon"><i class="icofont-envelope"></i></div>
+                                        <div class="text">
+                                            <p>Private Message</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-details">
+                    <nav class="profile-nav">
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-ativity-tab" data-bs-toggle="tab"
+                                    data-bs-target="#activity" type="button" role="tab" aria-controls="activity"
+                                    aria-selected="true">
+                                Activity
+                            </button>
+                            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                    data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+                                    aria-selected="false">
+                                Profile
+                            </button>
+                            <button class="nav-link" id="nav-friends-tab" data-bs-toggle="tab"
+                                    data-bs-target="#friends" type="button" role="tab" aria-controls="friends"
+                                    aria-selected="false">
+                                Friends <span class="item-number">16</span>
+                            </button>
+                            <button class="nav-link" id="nav-groups-tab" data-bs-toggle="tab"
+                                    data-bs-target="#groups" type="button" role="tab" aria-controls="groups"
+                                    aria-selected="false">
+                                Groups <span class="item-number">06</span>
+                            </button>
+                            <button class="nav-link" id="nav-photos-tab" data-bs-toggle="tab"
+                                    data-bs-target="#photos" type="button" role="tab" aria-controls="photos"
+                                    aria-selected="false">
+                                Photos
+                            </button>
+                            <button class="nav-link" id="nav-media-tab" data-bs-toggle="tab" data-bs-target="#media"
+                                    type="button" role="tab" aria-controls="media" aria-selected="false">
+                                Media <span class="item-number">35</span>
+                            </button>
+                            <div class="dropdown">
+                                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    More
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Activity</a></li>
+                                    <li><a class="dropdown-item" href="#">Privacy</a></li>
+                                    <li><a class="dropdown-item" href="#">Block user</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </nav>
+                    </div>
+                </div>
+            </div>
+            </div>
+</section>

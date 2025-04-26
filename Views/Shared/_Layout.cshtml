@@ -1,0 +1,359 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- x-icon -->
+    <link rel="shortcut icon" href="assets/images/x-icon.png" type="image/x-icon">
+
+    <!-- Other css -->
+    <link rel="stylesheet" href="~/assets/css/animate.css">
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/icofont.min.css">
+    <link rel="stylesheet" href="~/assets/css/swiper.min.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+
+    <title>TrueMatch</title>
+</head>
+
+<body>
+    <!-- preloader start here -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- preloader ending here -->
+    @inject IHttpContextAccessor HttpContextAccessor
+    @{
+        var email = HttpContextAccessor.HttpContext?.Session.GetString("Email");
+    }
+
+    @if (string.IsNullOrEmpty(email))
+    {
+        <a asp-controller="UserAuth" asp-action="Login"></a>
+    }
+
+    @inject IHttpContextAccessor HttpContextAccessor
+    @{
+        var userName = HttpContextAccessor.HttpContext?.Session.GetString("UserName");
+    }
+
+
+    <!-- ==========Header Section Starts Here========== -->
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-top-area">
+                    <ul class="left">
+                        <li>
+                            <i class="icofont-ui-call"></i> <span>+880-123-4567-6587</span>
+                        </li>
+                        <li>
+                            <i class="icofont-location-pin"></i> Uttora,Dhaka-1230
+                        </li>
+                    </ul>
+                    <ul class="social-icons d-flex align-items-center">
+                        <li>
+                            <p>
+                                Find us on :
+                            </p>
+                        </li>
+                        <li>
+                            <a href="#" class="fb"><i class="icofont-facebook-messenger"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" class="vimeo"><i class="icofont-vimeo"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" class="skype"><i class="icofont-skype"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" class="rss"><i class="icofont-rss-feed"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="container">
+                <div class="header-wrapper">
+                    <div class="logo d-flex">
+                        <a asp-action="Index" asp-controller="Home">
+                            <img src="~/assets/images/x-icon.png" alt="logo">
+                        </a>
+                        <div class="text-center">
+                            <h3>TrueMatch</h3>
+                            <p>Best For Dating Website</p>
+                        </div>
+                    </div>
+                    <div class="menu-area">
+                        <ul class="menu text-center">
+                            <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+                            <li><a asp-action="Success_Stories" asp-controller="Home">Stories</a></li>
+                            <li><a asp-action="AboutUs" asp-controller="Home">About Us</a></li>
+                            <li><a asp-action="ContactUs" asp-controller="Home">Contact</a></li>
+                        </ul>
+
+                        @if (!string.IsNullOrEmpty(email))
+                        {
+
+                            <!-- User is logged in, show Welcome text and Logout button -->
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="icofont-user"></i> Welcome,@userName
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" asp-action="Profile" asp-controller="UserProfile">Profile</a>
+                                    <a class="dropdown-item" asp-action="Settings" asp-controller="Account">Settings</a>
+                                    <div class="dropdown-divider"></div>
+                                    <form id="logoutForm" asp-controller="UserAuth" asp-action="Logout" method="post">
+                                        <button type="submit" class="dropdown-item" >Logout</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <!-- User is NOT logged in, show Login and Sign Up buttons -->
+                            <a asp-action="Login" asp-controller="UserAuth" class="login">
+                                <i class="icofont-user"></i> <span>LOG IN</span>
+                            </a>
+                            <a asp-action="SignUp" asp-controller="UserAuth" class="signup">
+                                <i class="icofont-users"></i> <span>SIGN UP</span>
+                            </a>
+                        }
+
+                        <!-- toggle icons -->
+                        <div class="header-bar d-lg-none">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="ellepsis-bar d-lg-none">
+                            <i class="icofont-info-square"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ==========Header Section Ends Here========== -->
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <!-- ================ footer Section start Here =============== -->
+    <footer class="footer-section">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row g-3 justify-content-center g-lg-0">
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="footer-top-item lab-item">
+                            <div class="lab-inner">
+                                <div class="lab-thumb">
+                                    <img src="~/assets/images/footer/icons/01.png" alt="Phone-icon">
+                                </div>
+                                <div class="lab-content">
+                                    <span>Phone Number : +88019 339 702 520</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="footer-top-item lab-item">
+                            <div class="lab-inner">
+                                <div class="lab-thumb">
+                                    <img src="~/assets/images/footer/icons/02.png" alt="email-icon">
+                                </div>
+                                <div class="lab-content">
+                                    <span>Email : admin@truematch.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="footer-top-item lab-item">
+                            <div class="lab-inner">
+                                <div class="lab-thumb">
+                                    <img src="~/assets/images/footer/icons/03.png" alt="location-icon">
+                                </div>
+                                <div class="lab-content">
+                                    <span>Address : Embankment Drive Road, Dhaka 1230</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-middle padding-tb" style="background-image: url(assets/images/footer/bg.png);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="footer-middle-item-wrapper">
+                            <div class="footer-middle-item mb-lg-0">
+                                <div class="fm-item-title">
+                                    <h4>About TrueMatch</h4>
+                                </div>
+                                <div class="fm-item-content">
+                                    <p class="mb-4">
+                                        Energistically coordinate highly efficient procesr
+                                        partnerships befor revolutionar growth strategie
+                                        improvement viaing awesome
+                                    </p>
+                                    <img src="~/assets/images/footer/about.jpg" alt="about-image" class="footer-abt-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="footer-middle-item-wrapper">
+                            <div class="footer-middle-item mb-lg-0">
+                                <div class="fm-item-title">
+                                    <h4>our Recent news</h4>
+                                </div>
+                                <div class="fm-item-content">
+                                    <div class="fm-item-widget lab-item">
+                                        <div class="lab-inner">
+                                            <div class="lab-thumb">
+                                                <a href="#">
+                                                    <img src="~/assets/images/footer/01.jpg"
+                                                         alt="footer-widget-img">
+                                                </a>
+                                            </div>
+                                            <div class="lab-content">
+                                                <h6>
+                                                    <a href="#">
+                                                        Enable Seamin Matera Forin And Our
+                                                        Orthonal Create Vortals.
+                                                    </a>
+                                                </h6>
+                                                <p>March 23, 2025</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fm-item-widget lab-item">
+                                        <div class="lab-inner">
+                                            <div class="lab-thumb">
+                                                <a href="#">
+                                                    <img src="~/assets/images/footer/02.jpg"
+                                                         alt="footer-widget-img">
+                                                </a>
+                                            </div>
+                                            <div class="lab-content">
+                                                <h6>
+                                                    <a href="#">
+                                                        Dynamca Network Otuitive Catays For
+                                                        Plagiarize Mindshare After
+                                                    </a>
+                                                </h6>
+                                                <p>March 23, 2025</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fm-item-widget lab-item">
+                                        <div class="lab-inner">
+                                            <div class="lab-thumb">
+                                                <a href="#">
+                                                    <img src="~/assets/images/footer/03.jpg"
+                                                         alt="footer-widget-img">
+                                                </a>
+                                            </div>
+                                            <div class="lab-content">
+                                                <h6>
+                                                    <a href="blog-single.html">
+                                                        Dynamca Network Otuitive Catays For
+                                                        Plagiarize Mindshare After
+                                                    </a>
+                                                </h6>
+                                                <p>March 23, 2025</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="footer-middle-item-wrapper">
+                            <div class="footer-middle-item-3 mb-lg-0">
+                                <div class="fm-item-title">
+                                    <h4>Our Newsletter Signup</h4>
+                                </div>
+                                <div class="fm-item-content">
+                                    <p>
+                                        By subscribing to our mailing list you will always
+                                        be update with the latest news from us.
+                                    </p>
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Enter email">
+                                        </div>
+                                        <button type="submit" class="lab-btn">
+                                            Send Massage <i class="icofont-paper-plane"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="footer-bottom-content text-center">
+                            <p>&copy; 2025 <a href="#">TrueMatch</a> -Best For Dating Website.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ================ footer Section end Here =============== -->
+    <!-- scrollToTop start here -->
+    <a href="#" class="scrollToTop"><i class="icofont-rounded-up"></i></a>
+    <!-- scrollToTop ending here -->
+    <script src="~/assets/js/jquery.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/waypoints.min.js"></script>
+    <script src="~/assets/js/swiper.min.js"></script>
+    <script src="~/assets/js/jquery.counterup.min.js"></script>
+    <script src="~/assets/js/wow.min.js"></script>
+    <script src="~/assets/js/isotope.pkgd.min.js"></script>
+    <script src="~/assets/js/functions.js"></script>
+
+    <!-- Add this for dropdown menu functionality -->
+    <script>
+        $(document).ready(function(){
+            $('.dropdown-toggle').dropdown();
+        });
+            // function confirmLogout() {
+            //     var result = confirm("Are you sure you want to logout?");
+            //     if (result) {
+            //         document.getElementById('logoutForm').submit();
+            //     }
+            // }
+
+
+
+    </script>
+</body>
+</html>

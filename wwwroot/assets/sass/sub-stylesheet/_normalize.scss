@@ -1,0 +1,169 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: $body-color;
+
+}
+
+:root {
+	scroll-behavior: auto !important;
+}
+
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+	color: $desc-color;
+	font-family: $roboto;
+	font-size: $fs-base;
+	line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a,
+a h1,
+a h2,
+a h3,
+a h4,
+a h5,
+a h6 {
+	clear: both;
+	@extend %text-bold;
+	line-height: 1.4;
+	font-family: $jost;
+	color: $title-color;
+}
+
+h1 {
+	font-size: $fs-h2;
+}
+
+h2 {
+	font-size: $fs-h3;
+}
+
+h3 {
+	font-size: $fs-h4;
+}
+
+h4 {
+	font-size: $fs-h5;
+}
+
+h5 {
+	font-size: $fs-h5;
+}
+
+h6 {
+	font-size: $fs-h6;
+}
+
+@include breakpoint(sm) {
+	h1 {
+		font-size: $fs-h1;
+		line-height: 1.5;
+	}
+
+	h2 {
+		font-size: $fs-h2;
+		line-height: 1.5;
+	}
+
+	h3 {
+		font-size: $fs-h3;
+		line-height: 1.5;
+	}
+
+	h4 {
+		font-size: $fs-h4;
+		line-height: 1.5;
+	}
+
+	h5 {
+		font-size: $fs-h5;
+		line-height: 1.5;
+	}
+
+	h6 {
+		font-size: $fs-h6;
+		line-height: 1.5;
+	}
+}
+
+p {
+	margin-bottom: 15px;
+	font-weight: 400;
+	font-size: 15px;
+
+	@include breakpoint(sm) {
+		font-size: $fs-base;
+	}
+}
+
+a {
+	color: $title-color;
+	@include transition($transition);
+	text-decoration: none;
+}
+
+a:visited {
+	color: $title-color;
+	outline: none;
+}
+
+a:hover,
+a:focus,
+a:active {
+	color: $title-color;
+	text-decoration: none;
+	outline: none;
+}
+
+a:focus {
+	outline: thin dotted;
+	outline: none;
+}
+
+a:hover,
+a:active {
+	outline: 0;
+}
+
+img {
+	height: auto;
+	max-width: 100%;
+}
+
+select {
+	border: 1px solid $border-color;
+}
+
+ul {
+	@extend %p-0;
+	@extend %m-0;
+
+	li {
+		@extend %list-none;
+	}
+}

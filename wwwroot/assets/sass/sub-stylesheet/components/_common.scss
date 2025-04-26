@@ -1,0 +1,349 @@
+/* @@@@@@@@@@@@@  Common CSS Writing Now  @@@@@@@@@@@@@@ */
+
+.padding-tb {
+    padding: 80px 0;
+
+    @include breakpoint(lg) {
+        padding: 120px 0;
+    }
+}
+
+.lab-btn {
+    @extend %d-inline-block;
+    line-height: 50px;
+    @extend %bg-primary;
+    @include transition($transition);
+    @include border-radius(2px);
+    @extend %rel;
+    @extend %hidden;
+    @extend %pointer;
+    padding: 0 1.3rem;
+    color: $white-color;
+    text-transform: capitalize;
+
+    i {
+        color: $white-color;
+        @include transition($transition);
+    }
+
+    &:hover {
+        background-color: $theme-color;
+        color: $white-color;
+        box-shadow: 3px 3px 0 currentColor;
+    }
+
+    &.style-2 {
+        background: transparent;
+        border: 2px solid $white-color;
+
+        span {
+            color: $theme-color;
+        }
+    }
+
+}
+
+
+
+.text-btn {
+    @extend %text-bold;
+    font-size: $fs-small;
+    color: $black-color;
+    @include transition($transition);
+
+    &:hover {
+        padding-left: 10px;
+        color: $theme-color;
+    }
+}
+
+.mb-30-none {
+    margin-bottom: -30px;
+}
+
+.p-30 {
+    @extend %p-30;
+}
+
+.mb-20 {
+    @extend %mb-20;
+}
+
+.mb-30 {
+    @extend %mb-30;
+}
+
+.px-15 {
+    @include breakpoint(sm) {
+        padding: 0 15px;
+    }
+}
+
+.bg-theme {
+    @extend %bg-theme;
+}
+
+.bg-prime {
+    @extend %bg-primary;
+}
+
+.gallery-img {
+    border: 1px solid $theme-color;
+    border-radius: 3px;
+    @extend %hidden;
+    box-shadow: 0 0 5px rgba($theme-color, $alpha: .30);
+
+    img {
+        width: 100%;
+        @include transition($transition);
+    }
+
+    &:hover {
+        img {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.border-radius-2 {
+    @extend %border-radius-2;
+}
+
+/* @@@@@@@@@@@@@  Header Section Start Here  @@@@@@@@@@@@@@ */
+.section-header {
+    @extend %text-center;
+    @extend %mb-30;
+    @extend %rel;
+    z-index: 1;
+
+    @include breakpoint(lg) {
+        max-width: 70%;
+        margin: 0 auto 50px;
+    }
+
+    @include breakpoint(xl) {
+        max-width: 65%;
+    }
+
+    h4 {
+        color: $white-color;
+        margin-top: -8px;
+    }
+
+    h2 {
+        margin-top: -10px;
+        color: $white-color;
+    }
+}
+
+/* @@@@@@@@@@@@@  paginations Start Here  @@@@@@@@@@@@@@ */
+.paginations {
+    margin: 40px 0;
+
+    @include breakpoint(lg) {
+        margin-bottom: 0;
+    }
+
+    ul {
+        @extend %m-0;
+
+        li {
+            padding: 5px;
+
+            a {
+                width: 46px;
+                height: 46px;
+                @extend %align-items-center;
+                @extend %justify-center;
+                box-shadow: 0 0px 5px rgba(136, 136, 136, .1);
+                color: $desc-color;
+                z-index: 1;
+                @extend %rel;
+                @extend %flex;
+                @extend %bg-primary;
+                @include border-radius(50%);
+                @include transition($transition);
+
+                &.active,
+                &:hover {
+                    color: $white-color;
+                    @extend %bg-theme;
+                }
+
+                &.dot {
+                    box-shadow: none;
+
+                    &:hover {
+                        background: transparent;
+                        color: $desc-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*@@@@@@@@@@@@@@   cart-plus-minus Start Here  @@@@@@@@@@@@@@@@@*/
+.cart-plus-minus {
+    border: 1px solid $border-color;
+    width: 120px;
+    margin: 0 auto;
+    @extend %pointer;
+    @extend %rel;
+    @extend %hidden;
+
+    .dec.qtybutton {
+        border-right: 1px solid $border-color;
+        height: 40px;
+        left: 0;
+        top: 0;
+    }
+
+    .cart-plus-minus-box {
+        border: medium none;
+        @extend %title-color;
+        float: left;
+        font-size: 14px;
+        height: 40px;
+        @extend %m-0;
+        @extend %text-center;
+        width: 120px;
+        outline: none;
+    }
+
+    .qtybutton {
+        @extend %title-color;
+        float: $white-color;
+        font-size: 14px;
+        font-weight: 500;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        @extend %m-0;
+        @extend %text-center;
+        @extend %abs;
+        @include transition($transition);
+
+        &:hover {
+            color: $white-color;
+            @extend %bg-theme;
+        }
+    }
+
+    .inc.qtybutton {
+        border-left: 1px solid $border-color;
+        right: 0;
+        top: 0;
+    }
+}
+
+/* *****=======  Custom Select   ========= *******/
+.custom-select {
+    @extend %rel;
+    @extend %w-100;
+
+    &::after {
+        @extend %abs;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 6px 6px 0 6px;
+        border-color: #ffffff transparent transparent transparent;
+    }
+
+    select {
+        @extend %w-100;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: transparent;
+        background-size: 10px 15px;
+    }
+}
+
+/* *****========= All Keyframes  ===============****** */
+
+@keyframes angle-move {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-6deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(8deg);
+    }
+}
+
+@keyframes up-down {
+
+    0%,
+    100% {
+        transform: translateY(-20px);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoom {
+
+    0%,
+    100% {
+        transform: scale(.9) rotate(0deg);
+    }
+
+    50% {
+        transform: scale(1.1) rotate(30deg);
+    }
+
+    80% {
+        transform: rotate(-30deg);
+    }
+}
+
+@keyframes rotate {
+
+    0%,
+    100% {
+        transform: rotate(10deg) translate(10px, 15px);
+    }
+
+    50% {
+        transform: rotate(240deg) translate(0, 0);
+    }
+}
+
+@keyframes bounce-1 {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-25px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+//riple
+@keyframes ripple {
+    100% {
+        width: 200%;
+        height: 200%;
+        opacity: 0;
+    }
+}
+
+//rotate-2
+@keyframes rotate-2 {
+    100% {
+        transform: rotate(150deg);
+    }
+}

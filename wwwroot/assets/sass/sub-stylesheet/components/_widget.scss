@@ -1,0 +1,141 @@
+/* @@@@@@@@@@@@@  Blog Widget Section Start Here  @@@@@@@@@@@@@@ */
+.widget {
+    @extend %bg-primary;
+    @extend %mb-20;
+    box-shadow: 0 0 10px rgba(136, 136, 136, .10);
+    border-radius: 4px;
+
+    &:last-child {
+        @extend %mb-0;
+    }
+
+    .widget-title {
+        padding: 25px 30px;
+        @extend %hidden;
+        border-bottom: 1px solid $body-color;
+
+
+        h5 {
+            text-transform: capitalize;
+            @extend %mb-0;
+        }
+    }
+
+    .widget-content {
+        @extend %m-0;
+        @extend %p-30;
+
+    }
+
+    &.search-widget {
+        .widget-content {
+            .banner-form {
+
+                .gender,
+                .person,
+                .age,
+                .city,
+                .interest {
+                    @extend %mb-20;
+                }
+
+                .interest {
+                    @extend %mb-30;
+                }
+
+                button {
+                    @extend %mb-0;
+                }
+            }
+        }
+    }
+
+    &.like-member {
+        .widget-content {
+            .col {
+
+                .image-thumb {
+                    @extend %hidden;
+                    @extend %rel;
+
+                    &::before {
+                        @extend %abs;
+                        top: 0;
+                        left: 0;
+                        width: 0;
+                        height: 0;
+                        border-style: solid;
+                        border-width: 35px 35px 0 0;
+                        border-color: $theme-color transparent transparent transparent;
+                        z-index: 5;
+                    }
+
+                    &::after {
+                        @extend %abs;
+                        content: "\ef44";
+                        font-family: "icoFont" !important;
+                        font-size: 12px;
+                        top: 3%;
+                        left: 4%;
+                        width: 35px;
+                        height: 35px;
+                        z-index: 6;
+
+                    }
+
+                    a {
+                        img {
+                            @include transition($transition);
+
+                        }
+
+                        &:hover {
+                            img {
+                                transform: scale(1.1) rotate(2deg);
+                            }
+                        }
+                    }
+                }
+
+
+            }
+        }
+    }
+
+    &.active-group {
+        .widget-content {
+            @extend %p-0;
+
+            .group-item {
+                &:first-child {
+                    border-bottom: 1px solid $body-color;
+                }
+
+                @extend %p-30;
+
+                .lab-inner {
+                    @extend %bg-primary;
+
+                    .lab-content {
+                        h6 {}
+
+                        .test {
+                            .lab-btn {
+                                background: $body-color;
+                                color: $white-color;
+
+                                i {
+                                    color: $white-color;
+                                }
+
+                                &:hover {
+                                    @extend %bg-theme;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

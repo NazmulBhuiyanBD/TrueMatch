@@ -1,0 +1,61 @@
+﻿
+<section class="page-header-section style-1" style="background:url(~/assets/images/page-header.jpg)">
+    <div class="container">
+        <div class="page-header-content">
+            <div class="page-header-inner">
+                <div class="page-title">
+                    <h2>TrueMatch Login Page</h2>
+                </div>
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">Login</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ==========Page Header Section Ends Here========== -->
+<!-- ==========login Section start Here========== -->
+<div class="login-section padding-tb">
+    <div class="container">
+        <div class="account-wrapper">
+            <h3 class="title">Login</h3>
+
+            <form class="account-form" method="post" asp-action="Login" asp-controller="UserAuth">
+                @if (ViewBag.LoginError != null)
+                {
+                    <div class="alert alert-danger">
+                        @ViewBag.LoginError
+                    </div>
+                }
+                <div class="form-group">
+                    <input type="email" placeholder="Email" name="Email" required />
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" name="Password" required />
+                </div>
+                <div class="form-group">
+                    <div class="d-flex justify-content-between flex-wrap pt-sm-2">
+                        <div class="checkgroup">
+                            <input type="checkbox" name="remember" id="remember">
+                            <label for="remember">Remember Me</label>
+                        </div>
+                        <a href="#">Forget Password?</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="d-block lab-btn" type="submit"><span>Submit Now</span></button>
+                </div>
+            </form>
+
+            <div class="account-bottom">
+                <span class="d-block cate pt-10">
+                    Don’t Have an Account?
+                    <a asp-action="SignUp" asp-controller="UserAuth">Sign Up</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==========Login Section ends Here========== -->
