@@ -82,7 +82,7 @@ namespace TrueMatch.Controllers
                 UserName = userName,
                 Email = email,
                 Password = password
-            };
+            };  
 
             _context.Accounts.Add(account);
             _context.SaveChanges();

@@ -8,5 +8,22 @@ namespace TrueMatch.Models.Data
         public required string Email { get; set; }
         public required string UserName { get; set; }
         public required string Password { get; set; }
+        [StringLength(50)]
+        public string? FirstName { get; set; }
+
+        [StringLength(50)]
+        public string? LastName { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? Birthday { get; set; }
+
+        [StringLength(10)]
+        public string? Gender { get; set; }
+
+        [MaxLength(200)]
+        public string? AboutUser { get; set; }
+
+        public string? ProfileImageUrl { get; set; }
+        public string? BackGroundImageUrl { get; set; }
     }
 }

@@ -1,19 +1,16 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model TrueMatch.Models.Data.Account
+
 <!-- ==========Page Header Section Start Here========== -->
 <section class="page-header-section style-1" style="background:url(~/assets/images/page-header.jpg)">
     <div class="container">
         <div class="page-header-content">
             <div class="page-header-inner">
                 <div class="page-title">
-                    <h2>Member Single Profile</h2>
+                    <h2>@Model.Email Profile</h2>
                 </div>
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active">William Smith</li>
+                    <li><a asp-action="UpdateProfile">Update Your Profile</a></li>
+                    <li class="active">Connect with friends</li>
                 </ol>
             </div>
         </div>
@@ -27,59 +24,38 @@
             <div class="member-profile">
                 <div class="profile-item">
                     <div class="profile-cover">
-                        <img src="~/assets/images/profile/cover.jpg" alt="cover-pic">
-                        <div class="edit-photo custom-upload">
-                            <div class="file-btn">
-                                <i class="icofont-camera"></i>
-                                Edit Photo
-                            </div>
-                            <input type="file">
-                        </div>
+                        @if(Model.ProfileImageUrl==null)
+                        {
+                            <img src="~/assets/images/profile/cover.jpg" alt="cover-pic">
+                            
+                        }
+                        else
+                        {
+                            <img src="@Model.BackGroundImageUrl" alt="DP">
+                        }
                     </div>
                     <div class="profile-information">
                         <div class="profile-pic">
-                            <img src="~/assets/images/profile/Profile.jpg" alt="DP">
-                            <div class="custom-upload">
-                                <div class="file-btn">
-                                    <span class="d-none d-lg-inline-block">
-                                        <i class="icofont-camera"></i>
-                                        Edit
-                                    </span>
-                                    <span class="d-lg-none mr-0"><i class="icofont-plus"></i></span>
-                                </div>
-                                <input type="file">
-                            </div>
+                            @if(Model.BackGroundImageUrl==null)
+                            {
+                                <img src="~/assets/images/profile/Profile.jpg" alt="DP">
+                            }
+                            else
+                            {
+                                
+                                <img src="@Model.ProfileImageUrl" alt="cover-pic">
+                            }
                         </div>
                         <div class="profile-name">
-                            <h4>William Smith</h4>
-                            <p>Active 02 Minutes Ago</p>
+                            @if (Model != null && !string.IsNullOrEmpty(Model.FirstName))
+                            {
+                                <h4>@Model.FirstName @Model.LastName</h4>
+                            }
+                            else
+                            {
+                                <h4>Update Profile</h4>
+                            }
                         </div>
-                        <ul class="profile-contact">
-                            <li>
-                                <a href="#">
-                                    <div class="icon"><i class="icofont-user"></i></div>
-                                    <div class="text">
-                                        <p>Add Friends</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="icon"><i class="icofont-envelope"></i></div>
-                                    <div class="text">
-                                        <p>Public Message</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="icon"><i class="icofont-envelope"></i></div>
-                                    <div class="text">
-                                        <p>Private Message</p>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
 
                     </div>
                 </div>

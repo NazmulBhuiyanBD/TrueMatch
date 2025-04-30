@@ -1,0 +1,76 @@
+﻿@model TrueMatch.Models.Data.Account
+
+<div>
+    <!-- ==========Page Header Section Start Here========== -->
+    <section class="page-header-section style-1" style="background:url(~/assets/images/page-header.jpg)">
+        <div class="container">
+            <div class="page-header-content">
+                <div class="page-header-inner">
+                    <div class="page-title">
+                        <h2>Update Profile Information</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ==========Page Header Section Ends Here========== -->
+
+<div class="m-3 p-3">
+        <form asp-action="UpdateProfile" method="post" enctype="multipart/form-data" class="container mt-4">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>First Name:</label>
+                    <input asp-for="FirstName" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label>Last Name:</label>
+                    <input asp-for="LastName" class="form-control" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Birthday:</label>
+                    <input asp-for="Birthday" type="date" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label>Gender:</label>
+                    <select asp-for="Gender" class="form-control">
+                        <option value="">-- Select Gender --</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label>About You:</label>
+                <textarea asp-for="AboutUser" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Profile Image:</label>
+                    <input type="file" name="ProfileImage" class="form-control" />
+                    @if (!string.IsNullOrEmpty(Model?.ProfileImageUrl))
+                    {
+                        <img src="@Model.ProfileImageUrl" class="mt-2 rounded" width="100" alt="Profile" />
+                    }
+                </div>
+                <div class="col-md-6">
+                    <label>Background Image:</label>
+                    <input type="file" name="BackgroundImage" class="form-control" />
+                    @if (!string.IsNullOrEmpty(Model?.BackGroundImageUrl))
+                    {
+                        <img src="@Model.BackGroundImageUrl" class="mt-2 rounded" width="100" alt="Background" />
+                    }
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+</div>
+
+</div>
+
