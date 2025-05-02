@@ -29,11 +29,15 @@
             </div>
 
             <div class="row mb-3">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label>Birthday:</label>
                     <input asp-for="Birthday" type="date" class="form-control" />
-                </div>
-                <div class="col-md-6">
+                </div> 
+                <div class="col-md-4">
+                    <label>City</label>
+                    <input asp-for="City" type="text" class="form-control" />
+                </div> 
+                <div class="col-md-4">
                     <label>Gender:</label>
                     <select asp-for="Gender" class="form-control">
                         <option value="">-- Select Gender --</option>
@@ -43,7 +47,10 @@
                     </select>
                 </div>
             </div>
-
+            <div class="mb-3">
+                <label>Address</label>
+                <textarea asp-for="Address"  class="form-control" rows="3"></textarea>
+            </div>
             <div class="mb-3">
                 <label>About You:</label>
                 <textarea asp-for="AboutUser" class="form-control" rows="3"></textarea>

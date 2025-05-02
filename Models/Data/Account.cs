@@ -20,8 +20,14 @@ namespace TrueMatch.Models.Data
         [StringLength(10)]
         public string? Gender { get; set; }
 
+        public int? Age { get; set; }
+
+        [StringLength(10)]
+        public string? City { get; set; }
+
         [MaxLength(200)]
         public string? AboutUser { get; set; }
+        public string? Address { get; set; }
 
         public string? ProfileImageUrl { get; set; }
         public string? BackGroundImageUrl { get; set; }

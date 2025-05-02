@@ -12,77 +12,59 @@
                                     Serious Dating With <strong>TrueMatch </strong> Your Perfect
                                     Match is Just a Click Away.
                                 </p>
-                                <form action="/" class="banner-form">
+                                <form method="post" asp-controller="UserProfile" asp-action="FindPartner" class="banner-form">
                                     <div class="gender">
-                                        <label for="gender" class="left">I am a </label>
+                                        <label for="gender" class="left">I am a</label>
                                         <div class="custom-select right">
-                                            <select name="gender" id="gender" class="">
-                                                <option value="0">Select Gender</option>
-                                                <option value="1">Male</option>
-                                                <option value="2">Female</option>
-                                                <option value="3">Others</option>
+                                            <select name="gender" id="gender">
+                                                <option value="">Select Gender</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Others">Others</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="person">
-                                        <label for="gender-two" class="left">Looking for</label>
+                                        <label for="lookingFor" class="left">Looking for</label>
                                         <div class="custom-select right">
-                                            <select name="gender" id="gender-two" class="">
-                                                <option value="0">Select Gender</option>
-                                                <option value="1">Male</option>
-                                                <option value="2">Female</option>
-                                                <option value="3">Others</option>
+                                            <select name="lookingFor" id="lookingFor">
+                                                <option value="">Select Gender</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Others">Others</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="age">
-                                        <label for="age" class="left">Age</label>
+                                        <label for="ageStart" class="left">Age</label>
                                         <div class="right d-flex justify-content-between">
                                             <div class="custom-select">
-                                                <select name="age-start" id="age">
-                                                    <option value="1">18</option>
-                                                    <option value="2">19</option>
-                                                    <option value="3">20</option>
-                                                    <option value="4">21</option>
-                                                    <option value="5">22</option>
-                                                    <option value="6">23</option>
-                                                    <option value="7">24</option>
-                                                    <option value="8">25</option>
-                                                    <option value="9">26</option>
-                                                    <option value="10">27</option>
-                                                    <option value="11">28</option>
-                                                    <option value="13">29</option>
-                                                    <option value="14">30</option>
+                                                <select name="ageStart" id="ageStart">
+                                                    @for (int i = 18; i <= 70; i++)
+                                                    {
+                                                        <option value="@i">@i</option>
+                                                    }
+                                                    <option value="70+">70+</option>
                                                 </select>
                                             </div>
-
                                             <div class="custom-select">
-                                                <select name="age-end" id="age-two">
-                                                    <option value="1">18+</option>
-                                                    <option value="2">19</option>
-                                                    <option value="3">20</option>
-                                                    <option value="4">21</option>
-                                                    <option value="5">22</option>
-                                                    <option value="6">23</option>
-                                                    <option value="7">24</option>
-                                                    <option value="8">25</option>
-                                                    <option value="9">26</option>
-                                                    <option value="10">27</option>
-                                                    <option value="11">28</option>
-                                                    <option value="13">29</option>
-                                                    <option value="14">30</option>
+                                                <select name="ageEnd" id="ageEnd">
+                                                    @for (int i = 18; i <= 70; i++)
+                                                    {
+                                                        <option value="@i">@i</option>
+                                                    }
+                                                    <option value="70+">70+</option>
                                                 </select>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="city">
                                         <label for="city" class="left">City</label>
-                                        <input class="right" type="text" id="city" placeholder="Your City Name..">
+                                        <input name="city" class="right" type="text" id="city" placeholder="Your City Name..">
                                     </div>
-                                    <button class="">Find Your Partner</button>
-
+                                    <button type="submit">Find Your Partner</button>
                                 </form>
+
                             </div>
                         </div>
                     </div>

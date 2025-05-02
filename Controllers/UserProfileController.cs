@@ -58,6 +58,9 @@ namespace TrueMatch.Controllers
                 user.LastName = model.LastName;
                 user.Birthday = model.Birthday;
                 user.Gender = model.Gender;
+                user.City = model.City;
+                user.Address = model.Address;
+                user.Age = model.Age;
                 user.AboutUser = model.AboutUser;
 
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
@@ -85,6 +88,11 @@ namespace TrueMatch.Controllers
             }
 
             return RedirectToAction("Profile");
+        }
+        public IActionResult FindPartner(Account ac)
+        {
+
+            return View();
         }
 
     }

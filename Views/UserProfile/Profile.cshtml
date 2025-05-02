@@ -27,23 +27,23 @@
                         @if(Model.ProfileImageUrl==null)
                         {
                             <img src="~/assets/images/profile/cover.jpg" alt="cover-pic">
-                            
+
                         }
                         else
                         {
-                            <img src="@Model.BackGroundImageUrl" alt="DP">
+                            <img src="@Model.BackGroundImageUrl" alt="Cover">
                         }
                     </div>
                     <div class="profile-information">
                         <div class="profile-pic">
                             @if(Model.BackGroundImageUrl==null)
                             {
-                                <img src="~/assets/images/profile/Profile.jpg" alt="DP">
+                                <img src="~/assets/images/profile/Profile.png" alt="DP">
                             }
                             else
                             {
-                                
-                                <img src="@Model.ProfileImageUrl" alt="cover-pic">
+
+                                <img src="@Model.ProfileImageUrl" alt="DP">
                             }
                         </div>
                         <div class="profile-name">
@@ -59,102 +59,182 @@
 
                     </div>
                 </div>
-                <div class="profile-item d-none">
-                    <div class="lab-inner">
-                        <div class="lab-thumb">
-                            <a href="#"><img src="~/assets/images/profile/Profile.jpg" alt="profile"></a>
-                        </div>
-                        <div class="lab-content">
-                            <div class="profile-name">
-                                <div class="p-name-content">
-                                    <h4>William Smith</h4>
-                                    <p>Active 02 Minutes Ago</p>
-                                </div>
-
-                                <div class="contact-button">
-                                    <button class="contact-btn">
-                                        <i class="icofont-info-circle"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <ul class="profile-contact">
-                                <li>
-                                    <a href="#">
-                                        <div class="icon"><i class="icofont-user"></i></div>
-                                        <div class="text">
-                                            <p>Add Friends</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="icon"><i class="icofont-envelope"></i></div>
-                                        <div class="text">
-                                            <p>Publice Message</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="icon"><i class="icofont-envelope"></i></div>
-                                        <div class="text">
-                                            <p>Private Message</p>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
                 <div class="profile-details">
                     <nav class="profile-nav">
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <button class="nav-link active" id="nav-ativity-tab" data-bs-toggle="tab"
-                                    data-bs-target="#activity" type="button" role="tab" aria-controls="activity"
-                                    aria-selected="true">
-                                Activity
-                            </button>
                             <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-                                    data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
-                                    aria-selected="false">
+                            data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+                            aria-selected="true">
                                 Profile
                             </button>
-                            <button class="nav-link" id="nav-friends-tab" data-bs-toggle="tab"
-                                    data-bs-target="#friends" type="button" role="tab" aria-controls="friends"
-                                    aria-selected="false">
-                                Friends <span class="item-number">16</span>
-                            </button>
-                            <button class="nav-link" id="nav-groups-tab" data-bs-toggle="tab"
-                                    data-bs-target="#groups" type="button" role="tab" aria-controls="groups"
-                                    aria-selected="false">
-                                Groups <span class="item-number">06</span>
-                            </button>
-                            <button class="nav-link" id="nav-photos-tab" data-bs-toggle="tab"
-                                    data-bs-target="#photos" type="button" role="tab" aria-controls="photos"
-                                    aria-selected="false">
-                                Photos
-                            </button>
                             <button class="nav-link" id="nav-media-tab" data-bs-toggle="tab" data-bs-target="#media"
-                                    type="button" role="tab" aria-controls="media" aria-selected="false">
-                                Media <span class="item-number">35</span>
+                            type="button" role="tab" aria-controls="media" aria-selected="false">
+                                Post
                             </button>
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                   data-bs-toggle="dropdown" aria-expanded="false">
-                                    More
-                                </a>
-
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Activity</a></li>
-                                    <li><a class="dropdown-item" href="#">Privacy</a></li>
-                                    <li><a class="dropdown-item" href="#">Block user</a></li>
-                                </ul>
-                            </div>
+                            <button class="nav-link" id="nav-friends-tab" data-bs-toggle="tab"
+                            data-bs-target="#friends" type="button" role="tab" aria-controls="friends"
+                            aria-selected="false">
+                                Friends
+                            </button>
+                            <button class="nav-link" id="nav-message-tab" data-bs-toggle="tab"
+                            data-bs-target="#message" type="button" role="tab" aria-controls="message"
+                            aria-selected="false">
+                                Message
+                            </button>
 
                         </div>
                     </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <!-- Profile tab -->
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <div>
+                                <article>
+                                    <div class="info-card mb-20">
+                                        <div class="info-card-title">
+                                            <h6>Personal Info</h6>
+                                        </div>
+                                        <div class="info-card-content">
+                                            <ul class="info-list">
+                                                <li>
+                                                    <p class="info-name">Name</p>
+                                                    <p class="info-details">@Model.FirstName @Model.LastName</p>
+                                                </li>
+                                                <li>
+                                                    <p class="info-name">I'm a</p>
+                                                    <p class="info-details">@Model.Gender</p>
+                                                </li>
+                                                <li>
+                                                    <p class="info-name">Age</p>
+                                                    <p class="info-details">
+                                                        @{
+                                                            int? age = null;
+
+                                                            if (Model.Birthday.HasValue)
+                                                            {
+                                                                var today = DateTime.Today;
+                                                                var birthDate = Model.Birthday.Value;
+                                                                age = today.Year - birthDate.Year;
+                                                                if (birthDate > today.AddYears(-age.Value))
+                                                                {
+                                                                    age--;
+                                                                }
+                                                            }
+                                                        }
+                                                        @(age.HasValue ? age.ToString() : "Not specified")
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <p class="info-name">Date of Birth</p>
+                                                    <p class="info-details">@Model.Birthday</p>
+                                                        </li>
+                                                        <li>
+                                                            <p class="info-name">Address</p>
+                                                            <p class="info-details">
+                                                                @Model.City ,Bangladesh
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                            <div class="info-card mb-20">
+                                                <div class="info-card-title">
+                                                    <h6>Myself Summary</h6>
+                                                </div>
+                                                <div class="info-card-content">
+                                                    <p>
+                                                        @Model.AboutUser
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="info-card mb-20"> 
+                                                <div class="info-card-title">
+                                                    <h6>Address</h6> 
+                                                 </div> 
+                                                <div class="info-card-content"> 
+                                                     <ul class="info-list"> 
+                                                         <li> 
+                                                             <p class="info-name">City</p> 
+                                                            <p class="info-details">@Model.City</p> 
+                                                         </li> 
+                                                         <li> 
+                                                             <p class="info-name">Road </p>
+                                                             <p class="info-details">@Model.Address</p>
+                                                         </li> 
+                                                     </ul> 
+
+                                                </div>
+                                            </div>
+                                            @* <div class="info-card mb-20"> *@
+                                            @*     <div class="info-card-title"> *@
+                                            @*         <h6>Lifestyle</h6> *@
+                                            @*     </div> *@
+                                            @*     <div class="info-card-content"> *@
+                                            @*         <ul class="info-list"> *@
+                                            @*             <li> *@
+                                            @*                 <p class="info-name">Interest</p> *@
+                                            @*                 <p class="info-details">Dogs,Cats</p> *@
+                                            @*             </li> *@
+                                            @*             <li> *@
+                                            @*                 <p class="info-name">Favorite vocations spot</p> *@
+                                            @*                 <p class="info-details">Maldives, Bangladesh</p> *@
+                                            @*             </li> *@
+                                            @*             <li> *@
+                                            @*                 <p class="info-name">Looking for</p> *@
+                                            @*                 <p class="info-details">Serious Relationshiop,Affair</p> *@
+                                            @*             </li> *@
+                                            @*             <li> *@
+                                            @*                 <p class="info-name">Smoking</p> *@
+                                            @*                 <p class="info-details">Casual Smoker</p> *@
+                                            @*             </li> *@
+                                            @*             <li> *@
+                                            @*                 <p class="info-name">Language</p> *@
+                                            @*                 <p class="info-details">English, French, Italian</p> *@
+                                            @*             </li> *@
+                                            @*         </ul> *@
+
+                                            @*     </div> *@
+                                            @* </div> *@
+                                            @* <div class="info-card"> *@
+                                            @*     <div class="info-card-title"> *@
+                                            @*         <h6>Physical info</h6> *@
+                                            @*     </div> *@
+                                            @*     <div class="info-card-content"> *@
+                                            @*         <ul class="info-list"> *@
+                                            @*             <li> *@
+                                            @*                 <p class="info-name">Height</p> *@
+                                            @*                 <p class="info-details">5'8 ft</p> *@
+                                            @*             </li> *@
+                                            @*             <li> *@
+                                            @*                 <p class="info-name">Weight</p> *@
+                                            @*                 <p class="info-details">72 kg</p> *@
+                                            @*             </li> *@
+                                            @*             <li> *@
+                                            @*                 <p class="info-name">Hair Color</p> *@
+                                            @*                 <p class="info-details">Black</p> *@
+                                            @*             </li> *@
+                                            @*             <li> *@
+                                            @*                 <p class="info-name">Eye Color</p> *@
+                                            @*                 <p class="info-details">Brown</p> *@
+                                            @*             </li> *@
+                                            @*             <li> *@
+                                            @*                 <p class="info-name">Body Type</p> *@
+                                            @*                 <p class="info-details">Tall</p> *@
+                                            @*             </li> *@
+                                            @*             <li> *@
+                                            @*                 <p class="info-name">Ethnicity</p> *@
+                                            @*                 <p class="info-details">Middle Eastern</p> *@
+                                            @*             </li> *@
+                                            @*         </ul> *@
+
+                                            @*     </div> *@
+                                            @* </div> *@
+                                 </article>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
-            </div>
+         </div>
 </section>
