@@ -1,4 +1,7 @@
-﻿<!-- ==========Page Header Section Start Here========== -->
+﻿@using TrueMatch.Models.Data
+@model List<Account>
+
+<!-- ==========Page Header Section Start Here========== -->
 <section class="page-header-section style-1" style="background:url(~/assets/images/page-header.jpg)">
     <div class="container">
         <div class="page-header-content">
@@ -15,37 +18,37 @@
     </div>
 </section>
 <!-- ==========Page Header Section Ends Here========== -->
-<section class="member-page-section">
-    <div class="container">
-      <div class="member-wrapper">
-            <div class="row g-3 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center">
-                <div class="col">
-                    <div class="lab-item member-item style-1 style-2">
-                        <div class="lab-inner">
-                            <div class="lab-thumb">
-                                <img src="~/assets/images/member/01.jpg" alt="member-img">
-                            </div>
-                            <div class="lab-content">
-                                <h6><a href="profile.html">Tenma Shyna</a> </h6>
-                                <p>Active 1 Day</p>
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-info text-center">@ViewBag.Message</div>
+}
+@if(Model !=null && Model.Any())
+{
+    <section class="member-page-section">
+        <div class="container">
+            <div class="member-wrapper">
+                <div class="row g-3 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center">
+                    @foreach(var partner in Model)
+                    {
+                        <div class="col">
+                            <div class="lab-item member-item style-1 style-2">
+                                <div class="lab-inner">
+                                    <div class="lab-thumb">
+                                        @* <img src="~/assets/images/member/01.jpg" alt="member-img"> *@
+                                        <img src="@partner.ProfileImageUrl" />
+                                        
+                                    </div>
+                                    <div class="lab-content">
+                                        <h6><a href="profile.html">@partner.FirstName @partner.LastName</a> </h6>
+                                        <p>Active 1 Day</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
+                   
                 </div>
-                <div class="col">
-                    <div class="lab-item member-item style-1 style-2">
-                        <div class="lab-inner">
-                            <div class="lab-thumb">
-                                <img src="~/assets/images/member/02.jpg" alt="member-img">
-                            </div>
-                            <div class="lab-content">
-                                <h6><a href="profile.html">Maya Statham</a> </h6>
-                                <p>Active 1 Day</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-             </div>
-       </div>
-     </div>
-</section>
+            </div>
+        </div>
+    </section>
+}

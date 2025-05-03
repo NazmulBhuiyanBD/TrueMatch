@@ -1,0 +1,225 @@
+﻿@model TrueMatch.Models.Data.Account
+
+<!-- ==========Page Header Section Start Here========== -->
+<section class="page-header-section style-1" style="background:url(~/assets/images/page-header.jpg)">
+    <div class="container">
+        <div class="page-header-content">
+            <div class="page-header-inner">
+                <div class="page-title">
+                    <h2>@Model.Email Profile</h2>
+                </div>
+                <ol class="breadcrumb">
+                    <li><a asp-action="UpdateProfile">Update Your Profile</a></li>
+                    <li class="active">Connect with friends</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ==========Page Header Section Ends Here========== -->
+<!-- ==========Profile section start ========== -->
+<section class="profile-section padding-tb">
+    <div class="container">
+        <div class="section-wrapper">
+            <div class="member-profile">
+                <div class="profile-item">
+                    <div class="profile-cover">
+                        @if (Model.ProfileImageUrl == null)
+                        {
+                            <img src="~/assets/images/profile/cover.jpg" alt="cover-pic">
+
+                        }
+                        else
+                        {
+                            <img src="@Model.BackGroundImageUrl" alt="Cover">
+                        }
+                    </div>
+                    <div class="profile-information">
+                        <div class="profile-pic">
+                            @if (Model.BackGroundImageUrl == null)
+                            {
+                                <img src="~/assets/images/profile/Profile.png" alt="DP">
+                            }
+                            else
+                            {
+
+                                <img src="@Model.ProfileImageUrl" alt="DP">
+                            }
+                        </div>
+                        <div class="profile-name">
+                            @if (Model != null && !string.IsNullOrEmpty(Model.FirstName))
+                            {
+                                <h4>@Model.FirstName @Model.LastName</h4>
+                            }
+                            else
+                            {
+                                <h4>Not Update yet</h4>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+                <div class="profile-details">
+                    <nav class="profile-nav">
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                    data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+                                    aria-selected="true">
+                                Profile
+                            </button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <!-- Profile tab -->
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <div>
+                                <article>
+                                    <div class="info-card mb-20">
+                                        <div class="info-card-title">
+                                            <h6>Personal Info</h6>
+                                        </div>
+                                        <div class="info-card-content">
+                                            <ul class="info-list">
+                                                <li>
+                                                    <p class="info-name">Name</p>
+                                                    <p class="info-details">@Model.FirstName @Model.LastName</p>
+                                                </li>
+                                                <li>
+                                                    <p class="info-name">I'm a</p>
+                                                    <p class="info-details">@Model.Gender</p>
+                                                </li>
+                                                <li>
+                                                    <p class="info-name">Age</p>
+                                                    <p class="info-details">
+                                                        @{
+                                                            int? age = null;
+
+                                                            if (Model.Birthday.HasValue)
+                                                            {
+                                                                var today = DateTime.Today;
+                                                                var birthDate = Model.Birthday.Value;
+                                                                age = today.Year - birthDate.Year;
+                                                                if (birthDate > today.AddYears(-age.Value))
+                                                                {
+                                                                    age--;
+                                                                }
+                                                            }
+                                                        }
+                                                        @(age.HasValue ? age.ToString() : "Not specified")
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p class="info-name">Date of Birth</p>
+                                                    <p class="info-details">@Model.Birthday</p>
+                                                </li>
+                                                <li>
+                                                    <p class="info-name">Address</p>
+                                                    <p class="info-details">
+                                                        @Model.City ,Bangladesh
+                                                    </p>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="info-card mb-20">
+                                        <div class="info-card-title">
+                                            <h6>Myself Summary</h6>
+                                        </div>
+                                        <div class="info-card-content">
+                                            <p>
+                                                @Model.AboutUser
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="info-card mb-20">
+                                        <div class="info-card-title">
+                                            <h6>Address</h6>
+                                        </div>
+                                        <div class="info-card-content">
+                                            <ul class="info-list">
+                                                <li>
+                                                    <p class="info-name">City</p>
+                                                    <p class="info-details">@Model.City</p>
+                                                </li>
+                                                <li>
+                                                    <p class="info-name">Road </p>
+                                                    <p class="info-details">@Model.Address</p>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    @* <div class="info-card mb-20"> *@
+                                    @*     <div class="info-card-title"> *@
+                                    @*         <h6>Lifestyle</h6> *@
+                                    @*     </div> *@
+                                    @*     <div class="info-card-content"> *@
+                                    @*         <ul class="info-list"> *@
+                                    @*             <li> *@
+                                    @*                 <p class="info-name">Interest</p> *@
+                                    @*                 <p class="info-details">Dogs,Cats</p> *@
+                                    @*             </li> *@
+                                    @*             <li> *@
+                                    @*                 <p class="info-name">Favorite vocations spot</p> *@
+                                    @*                 <p class="info-details">Maldives, Bangladesh</p> *@
+                                    @*             </li> *@
+                                    @*             <li> *@
+                                    @*                 <p class="info-name">Looking for</p> *@
+                                    @*                 <p class="info-details">Serious Relationshiop,Affair</p> *@
+                                    @*             </li> *@
+                                    @*             <li> *@
+                                    @*                 <p class="info-name">Smoking</p> *@
+                                    @*                 <p class="info-details">Casual Smoker</p> *@
+                                    @*             </li> *@
+                                    @*             <li> *@
+                                    @*                 <p class="info-name">Language</p> *@
+                                    @*                 <p class="info-details">English, French, Italian</p> *@
+                                    @*             </li> *@
+                                    @*         </ul> *@
+
+                                    @*     </div> *@
+                                    @* </div> *@
+                                    @* <div class="info-card"> *@
+                                    @*     <div class="info-card-title"> *@
+                                    @*         <h6>Physical info</h6> *@
+                                    @*     </div> *@
+                                    @*     <div class="info-card-content"> *@
+                                    @*         <ul class="info-list"> *@
+                                    @*             <li> *@
+                                    @*                 <p class="info-name">Height</p> *@
+                                    @*                 <p class="info-details">5'8 ft</p> *@
+                                    @*             </li> *@
+                                    @*             <li> *@
+                                    @*                 <p class="info-name">Weight</p> *@
+                                    @*                 <p class="info-details">72 kg</p> *@
+                                    @*             </li> *@
+                                    @*             <li> *@
+                                    @*                 <p class="info-name">Hair Color</p> *@
+                                    @*                 <p class="info-details">Black</p> *@
+                                    @*             </li> *@
+                                    @*             <li> *@
+                                    @*                 <p class="info-name">Eye Color</p> *@
+                                    @*                 <p class="info-details">Brown</p> *@
+                                    @*             </li> *@
+                                    @*             <li> *@
+                                    @*                 <p class="info-name">Body Type</p> *@
+                                    @*                 <p class="info-details">Tall</p> *@
+                                    @*             </li> *@
+                                    @*             <li> *@
+                                    @*                 <p class="info-name">Ethnicity</p> *@
+                                    @*                 <p class="info-details">Middle Eastern</p> *@
+                                    @*             </li> *@
+                                    @*         </ul> *@
+
+                                    @*     </div> *@
+                                    @* </div> *@
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

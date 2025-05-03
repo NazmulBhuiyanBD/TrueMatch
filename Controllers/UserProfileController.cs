@@ -89,9 +89,26 @@ namespace TrueMatch.Controllers
 
             return RedirectToAction("Profile");
         }
-        public IActionResult FindPartner(Account ac)
+        [HttpGet]
+        public async Task <IActionResult> FindPartner(string gender,int ageStart, int ageEnd, string city)
         {
+            string email = HttpContext.Session.GetString("Email"); // Get email again
+            if (email == null) return RedirectToAction("Login", "Account");
 
+            var partner = await _context.Accounts.Where(b => b.Gender == gender && b.City == city && b.Age>=ageStart && b.Age <= ageEnd).ToListAsync();
+            if (partner.Any())
+            {
+                return View("FindPartner", partner);
+            }
+            else
+            {
+                ViewBag.Message = "No User found from these range";
+                return View("FindPartner", new List<Account>());
+            }
+        }
+        [HttpGet]
+        public IActionResult FindPartnerProfile()
+        {
             return View();
         }
 

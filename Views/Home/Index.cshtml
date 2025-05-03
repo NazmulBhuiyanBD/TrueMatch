@@ -12,11 +12,11 @@
                                     Serious Dating With <strong>TrueMatch </strong> Your Perfect
                                     Match is Just a Click Away.
                                 </p>
-                                <form method="post" asp-controller="UserProfile" asp-action="FindPartner" class="banner-form">
+                                <form method="get" asp-controller="UserProfile" asp-action="FindPartner" class="banner-form">
                                     <div class="gender">
                                         <label for="gender" class="left">I am a</label>
                                         <div class="custom-select right">
-                                            <select name="gender" id="gender">
+                                            <select name="mygender" id="gender">
                                                 <option value="">Select Gender</option>
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
@@ -27,7 +27,7 @@
                                     <div class="person">
                                         <label for="lookingFor" class="left">Looking for</label>
                                         <div class="custom-select right">
-                                            <select name="lookingFor" id="lookingFor">
+                                            <select name="gender" id="lookingFor">
                                                 <option value="">Select Gender</option>
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
