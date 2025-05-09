@@ -12,8 +12,8 @@ using TrueMatch.Models;
 namespace TrueMatch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250501133334_age")]
-    partial class age
+    [Migration("20250509165111_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,9 @@ namespace TrueMatch.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("Age")
                         .HasColumnType("int");
 
@@ -50,6 +53,9 @@ namespace TrueMatch.Migrations
                     b.Property<string>("FirstName")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Followed")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
                         .HasMaxLength(10)
@@ -73,6 +79,41 @@ namespace TrueMatch.Migrations
                     b.HasKey("Email");
 
                     b.ToTable("Accounts");
+                });
+
+            modelBuilder.Entity("TrueMatch.Models.Data.Post", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("PostTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email");
+
+                    b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("TrueMatch.Models.Data.Post", b =>
+                {
+                    b.HasOne("TrueMatch.Models.Data.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("Email")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
                 });
 #pragma warning restore 612, 618
         }

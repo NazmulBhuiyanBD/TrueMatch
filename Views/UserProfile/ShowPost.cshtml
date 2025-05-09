@@ -1,0 +1,39 @@
+﻿@using TrueMatch.Models.Data;
+@model List<Post>
+<section class="page-header-section style-1" style="background:url(~/assets/images/page-header.jpg)">
+    <div class="container">
+        <div class="page-header-content">
+            <div class="page-header-inner">
+                <div class="page-title">
+                    <h2>All Your Post</h2>
+                </div>
+                <ol class="breadcrumb">
+                    <li><a asp-action="Index" asp-controller="Home">Go Back To Your Profile</a></li>
+                    <li class="active">Make a Post</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="m-3 p-3">
+    @foreach (var post in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                @if (!string.IsNullOrEmpty(post.ImageUrl))
+                {
+                    <img src="@post.ImageUrl" class="card-img-top" alt="Post image">
+                }
+                <div class="card-body">
+                    <h5 class="card-title text-dark">@post.PostTitle</h5>
+                    <p class="card-text text-dark">@post.Description</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">
+                        Posted by: @post.Account?.FirstName @post.Account?.LastName
+                    </small>
+                </div>
+            </div>
+        </div>
+    }
+</div>

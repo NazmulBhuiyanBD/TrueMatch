@@ -22,43 +22,6 @@ namespace TrueMatch.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("FriendRequest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AccountEmail")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AccountEmail1")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsAccepted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ReceiverEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("RequestedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("SenderEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountEmail");
-
-                    b.HasIndex("AccountEmail1");
-
-                    b.ToTable("FriendRequests");
-                });
-
             modelBuilder.Entity("TrueMatch.Models.Data.Account", b =>
                 {
                     b.Property<string>("Email")
@@ -88,6 +51,9 @@ namespace TrueMatch.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Followed")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Gender")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
@@ -112,22 +78,42 @@ namespace TrueMatch.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("FriendRequest", b =>
+            modelBuilder.Entity("TrueMatch.Models.Data.Post", b =>
                 {
-                    b.HasOne("TrueMatch.Models.Data.Account", null)
-                        .WithMany("ReceivedFriendRequests")
-                        .HasForeignKey("AccountEmail");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasOne("TrueMatch.Models.Data.Account", null)
-                        .WithMany("SentFriendRequests")
-                        .HasForeignKey("AccountEmail1");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email");
+
+                    b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("TrueMatch.Models.Data.Account", b =>
+            modelBuilder.Entity("TrueMatch.Models.Data.Post", b =>
                 {
-                    b.Navigation("ReceivedFriendRequests");
+                    b.HasOne("TrueMatch.Models.Data.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("Email")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("SentFriendRequests");
+                    b.Navigation("Account");
                 });
 #pragma warning restore 612, 618
         }

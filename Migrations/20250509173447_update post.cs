@@ -5,14 +5,14 @@
 namespace TrueMatch.Migrations
 {
     /// <inheritdoc />
-    public partial class addingaddress : Migration
+    public partial class updatepost : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Address",
-                table: "Accounts",
+                name: "ImageUrl",
+                table: "Posts",
                 type: "nvarchar(max)",
                 nullable: true);
         }
@@ -21,8 +21,8 @@ namespace TrueMatch.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Address",
-                table: "Accounts");
+                name: "ImageUrl",
+                table: "Posts");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TrueMatch.Models.Data
 {
@@ -6,8 +7,10 @@ namespace TrueMatch.Models.Data
     {
         [Key]
         public string Email { get; set; }
+
         public required string UserName { get; set; }
         public required string Password { get; set; }
+
         [StringLength(50)]
         public string? FirstName { get; set; }
 
@@ -27,13 +30,13 @@ namespace TrueMatch.Models.Data
 
         [MaxLength(200)]
         public string? AboutUser { get; set; }
+
         public string? Address { get; set; }
 
         public string? ProfileImageUrl { get; set; }
         public string? BackGroundImageUrl { get; set; }
 
-        public ICollection<FriendRequest> SentFriendRequests { get; set; }
-        public ICollection<FriendRequest> ReceivedFriendRequests { get; set; }
+        public string? Followed { get; set; }
 
     }
 }

@@ -60,7 +60,10 @@ namespace TrueMatch.Controllers
                 user.Gender = model.Gender;
                 user.City = model.City;
                 user.Address = model.Address;
-                user.Age = model.Age;
+                var today = DateTime.Today;
+                var birthDate = model.Birthday.Value;
+              
+                user.Age = today.Year - birthDate.Year;
                 user.AboutUser = model.AboutUser;
 
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
@@ -116,71 +119,57 @@ namespace TrueMatch.Controllers
 
             return View(partner);
         }
-
-        [HttpPost]
-        public IActionResult SendFriendRequest(string receiverEmail)
+        public IActionResult UserPost()
         {
-            var senderEmail = HttpContext.Session.GetString("Email");
-            if (string.IsNullOrEmpty(senderEmail)) return RedirectToAction("Login", "UserAuth");
-
-            if (_context.FriendRequests.Any(f =>
-                (f.SenderEmail == senderEmail && f.ReceiverEmail == receiverEmail) ||
-                (f.SenderEmail == receiverEmail && f.ReceiverEmail == senderEmail)))
-            {
-                TempData["Message"] = "Friend request already exists.";
-                return RedirectToAction("FindPartner");
-            }
-
-            var request = new FriendRequest
-            {
-                SenderEmail = senderEmail,
-                ReceiverEmail = receiverEmail
-            };
-
-            _context.FriendRequests.Add(request);
-            _context.SaveChanges();
-
-            TempData["Message"] = "Friend request sent!";
-            return RedirectToAction("FindPartner");
-        }
-
-        public IActionResult FriendRequests()
-        {
-            var userEmail = HttpContext.Session.GetString("Email");
-            var requests = _context.FriendRequests
-                .Where(fr => fr.ReceiverEmail == userEmail && !fr.IsAccepted)
-                .ToList();
-
-            return View(requests);
+            string email = HttpContext.Session.GetString("Email");
+            if (email == null) return RedirectToAction("Login", "Account");
+            return View();
         }
 
         [HttpPost]
-        public IActionResult AcceptFriend(int id)
+        public async Task<IActionResult> UserPost(Post p)
         {
-            var request = _context.FriendRequests.Find(id);
-            if (request != null)
-            {
-                request.IsAccepted = true;
-                _context.SaveChanges();
-            }
-            return RedirectToAction("FriendRequests");
-        }
+            string? email = HttpContext.Session.GetString("Email");
+            if (email == null)
+                return RedirectToAction("Login", "Account");
 
-        public IActionResult FriendList()
+            p.Email = email;
+
+            // Handle image upload
+            if (p.ImageFile != null && p.ImageFile.Length > 0)
+            {
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(p.ImageFile.FileName);
+                var savePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+
+                using (var stream = new FileStream(savePath, FileMode.Create))
+                {
+                    await p.ImageFile.CopyToAsync(stream);
+                }
+
+                p.ImageUrl = "/images/" + fileName;
+            }
+
+            _context.Posts.Add(p);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Profile"); // Or wherever you want to go after saving
+        }
+        [HttpGet]
+        public IActionResult ShowPost()
         {
             var userEmail = HttpContext.Session.GetString("Email");
-
-            var friends = _context.FriendRequests
-                .Where(fr => (fr.SenderEmail == userEmail || fr.ReceiverEmail == userEmail) && fr.IsAccepted)
+            if (userEmail == null)
+            {
+                return RedirectToAction("Login", "UserAuth");
+            }
+            var posts = _context.Posts
+                .Include(p => p.Account) // Include the Account navigation property
+                .OrderByDescending(p => p.Id) // Newest first
                 .ToList();
 
-            var friendAccounts = friends.Select(f =>
-                f.SenderEmail == userEmail
-                    ? _context.Accounts.FirstOrDefault(a => a.Email == f.ReceiverEmail)
-                    : _context.Accounts.FirstOrDefault(a => a.Email == f.SenderEmail)).ToList();
-
-            return View(friendAccounts);
+            return View(posts);
         }
+
 
 
     }

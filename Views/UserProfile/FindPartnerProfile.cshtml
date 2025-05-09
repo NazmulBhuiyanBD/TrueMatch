@@ -58,10 +58,11 @@
                         </div>
                         <ul class="profile-contact">
                             <li>
-                                <form asp-action="SendFriendRequest" asp-controller="UserProfile" method="post">
-                                    <input type="hidden" name="receiverEmail" value="@Model.Email" />
-                                    <button type="submit" class="btn btn-success">Add Friend</button>
+                                <form method="post" asp-controller="UserProfile" asp-action="Follows">
+                                    <input type="hidden" name="FollowedEmail" value="@Model.Followed" />
+                                    <button type="submit">Followe</button>
                                 </form>
+
 
 
                                 

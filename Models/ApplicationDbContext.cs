@@ -11,8 +11,6 @@ namespace TrueMatch.Models
         }
 
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<FriendRequest> FriendRequests { get; set; }
-
-
+        public DbSet<Post> Posts { get; set; }
     }
 }
