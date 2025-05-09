@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrueMatch.Models;
 
@@ -11,9 +12,11 @@ using TrueMatch.Models;
 namespace TrueMatch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250506145127_msg")]
+    partial class msg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,12 +33,6 @@ namespace TrueMatch.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AccountEmail")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AccountEmail1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<bool>("IsAccepted")
                         .HasColumnType("bit");
 
@@ -51,10 +48,6 @@ namespace TrueMatch.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AccountEmail");
-
-                    b.HasIndex("AccountEmail1");
 
                     b.ToTable("FriendRequests");
                 });
@@ -112,22 +105,55 @@ namespace TrueMatch.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("FriendRequest", b =>
+            modelBuilder.Entity("TrueMatch.Models.Data.Message", b =>
                 {
-                    b.HasOne("TrueMatch.Models.Data.Account", null)
-                        .WithMany("ReceivedFriendRequests")
-                        .HasForeignKey("AccountEmail");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.HasOne("TrueMatch.Models.Data.Account", null)
-                        .WithMany("SentFriendRequests")
-                        .HasForeignKey("AccountEmail1");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SenderEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReceiverEmail");
+
+                    b.HasIndex("SenderEmail");
+
+                    b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("TrueMatch.Models.Data.Account", b =>
+            modelBuilder.Entity("TrueMatch.Models.Data.Message", b =>
                 {
-                    b.Navigation("ReceivedFriendRequests");
+                    b.HasOne("TrueMatch.Models.Data.Account", "Receiver")
+                        .WithMany()
+                        .HasForeignKey("ReceiverEmail")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("SentFriendRequests");
+                    b.HasOne("TrueMatch.Models.Data.Account", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderEmail")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
                 });
 #pragma warning restore 612, 618
         }

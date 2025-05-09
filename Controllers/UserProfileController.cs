@@ -107,10 +107,81 @@ namespace TrueMatch.Controllers
             }
         }
         [HttpGet]
-        public IActionResult FindPartnerProfile()
+        public async Task<IActionResult> FindPartnerProfile(string email)
         {
-            return View();
+            if (string.IsNullOrEmpty(email)) return BadRequest();
+
+            var partner = await _context.Accounts.FirstOrDefaultAsync(a => a.Email == email);
+            if (partner == null) return NotFound();
+
+            return View(partner);
         }
+
+        [HttpPost]
+        public IActionResult SendFriendRequest(string receiverEmail)
+        {
+            var senderEmail = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(senderEmail)) return RedirectToAction("Login", "UserAuth");
+
+            if (_context.FriendRequests.Any(f =>
+                (f.SenderEmail == senderEmail && f.ReceiverEmail == receiverEmail) ||
+                (f.SenderEmail == receiverEmail && f.ReceiverEmail == senderEmail)))
+            {
+                TempData["Message"] = "Friend request already exists.";
+                return RedirectToAction("FindPartner");
+            }
+
+            var request = new FriendRequest
+            {
+                SenderEmail = senderEmail,
+                ReceiverEmail = receiverEmail
+            };
+
+            _context.FriendRequests.Add(request);
+            _context.SaveChanges();
+
+            TempData["Message"] = "Friend request sent!";
+            return RedirectToAction("FindPartner");
+        }
+
+        public IActionResult FriendRequests()
+        {
+            var userEmail = HttpContext.Session.GetString("Email");
+            var requests = _context.FriendRequests
+                .Where(fr => fr.ReceiverEmail == userEmail && !fr.IsAccepted)
+                .ToList();
+
+            return View(requests);
+        }
+
+        [HttpPost]
+        public IActionResult AcceptFriend(int id)
+        {
+            var request = _context.FriendRequests.Find(id);
+            if (request != null)
+            {
+                request.IsAccepted = true;
+                _context.SaveChanges();
+            }
+            return RedirectToAction("FriendRequests");
+        }
+
+        public IActionResult FriendList()
+        {
+            var userEmail = HttpContext.Session.GetString("Email");
+
+            var friends = _context.FriendRequests
+                .Where(fr => (fr.SenderEmail == userEmail || fr.ReceiverEmail == userEmail) && fr.IsAccepted)
+                .ToList();
+
+            var friendAccounts = friends.Select(f =>
+                f.SenderEmail == userEmail
+                    ? _context.Accounts.FirstOrDefault(a => a.Email == f.ReceiverEmail)
+                    : _context.Accounts.FirstOrDefault(a => a.Email == f.SenderEmail)).ToList();
+
+            return View(friendAccounts);
+        }
+
 
     }
 }

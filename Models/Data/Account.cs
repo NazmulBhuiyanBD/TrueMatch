@@ -5,7 +5,7 @@ namespace TrueMatch.Models.Data
     public class Account
     {
         [Key]
-        public required string Email { get; set; }
+        public string Email { get; set; }
         public required string UserName { get; set; }
         public required string Password { get; set; }
         [StringLength(50)]
@@ -31,5 +31,9 @@ namespace TrueMatch.Models.Data
 
         public string? ProfileImageUrl { get; set; }
         public string? BackGroundImageUrl { get; set; }
+
+        public ICollection<FriendRequest> SentFriendRequests { get; set; }
+        public ICollection<FriendRequest> ReceivedFriendRequests { get; set; }
+
     }
 }

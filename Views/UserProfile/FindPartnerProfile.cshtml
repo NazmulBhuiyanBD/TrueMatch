@@ -56,13 +56,24 @@
                                 <h4>Not Update yet</h4>
                             }
                         </div>
+                        <ul class="profile-contact">
+                            <li>
+                                <form asp-action="SendFriendRequest" asp-controller="UserProfile" method="post">
+                                    <input type="hidden" name="receiverEmail" value="@Model.Email" />
+                                    <button type="submit" class="btn btn-success">Add Friend</button>
+                                </form>
+
+
+                                
+                            </li>
+                        </ul>
 
                     </div>
                 </div>
                 <div class="profile-details">
                     <nav class="profile-nav">
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                            <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab"
                                     data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
                                     aria-selected="true">
                                 Profile
@@ -71,7 +82,7 @@
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                         <!-- Profile tab -->
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="tab-pane activity-page show active fade" id="profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                             <div>
                                 <article>
                                     <div class="info-card mb-20">
@@ -150,70 +161,6 @@
 
                                         </div>
                                     </div>
-                                    @* <div class="info-card mb-20"> *@
-                                    @*     <div class="info-card-title"> *@
-                                    @*         <h6>Lifestyle</h6> *@
-                                    @*     </div> *@
-                                    @*     <div class="info-card-content"> *@
-                                    @*         <ul class="info-list"> *@
-                                    @*             <li> *@
-                                    @*                 <p class="info-name">Interest</p> *@
-                                    @*                 <p class="info-details">Dogs,Cats</p> *@
-                                    @*             </li> *@
-                                    @*             <li> *@
-                                    @*                 <p class="info-name">Favorite vocations spot</p> *@
-                                    @*                 <p class="info-details">Maldives, Bangladesh</p> *@
-                                    @*             </li> *@
-                                    @*             <li> *@
-                                    @*                 <p class="info-name">Looking for</p> *@
-                                    @*                 <p class="info-details">Serious Relationshiop,Affair</p> *@
-                                    @*             </li> *@
-                                    @*             <li> *@
-                                    @*                 <p class="info-name">Smoking</p> *@
-                                    @*                 <p class="info-details">Casual Smoker</p> *@
-                                    @*             </li> *@
-                                    @*             <li> *@
-                                    @*                 <p class="info-name">Language</p> *@
-                                    @*                 <p class="info-details">English, French, Italian</p> *@
-                                    @*             </li> *@
-                                    @*         </ul> *@
-
-                                    @*     </div> *@
-                                    @* </div> *@
-                                    @* <div class="info-card"> *@
-                                    @*     <div class="info-card-title"> *@
-                                    @*         <h6>Physical info</h6> *@
-                                    @*     </div> *@
-                                    @*     <div class="info-card-content"> *@
-                                    @*         <ul class="info-list"> *@
-                                    @*             <li> *@
-                                    @*                 <p class="info-name">Height</p> *@
-                                    @*                 <p class="info-details">5'8 ft</p> *@
-                                    @*             </li> *@
-                                    @*             <li> *@
-                                    @*                 <p class="info-name">Weight</p> *@
-                                    @*                 <p class="info-details">72 kg</p> *@
-                                    @*             </li> *@
-                                    @*             <li> *@
-                                    @*                 <p class="info-name">Hair Color</p> *@
-                                    @*                 <p class="info-details">Black</p> *@
-                                    @*             </li> *@
-                                    @*             <li> *@
-                                    @*                 <p class="info-name">Eye Color</p> *@
-                                    @*                 <p class="info-details">Brown</p> *@
-                                    @*             </li> *@
-                                    @*             <li> *@
-                                    @*                 <p class="info-name">Body Type</p> *@
-                                    @*                 <p class="info-details">Tall</p> *@
-                                    @*             </li> *@
-                                    @*             <li> *@
-                                    @*                 <p class="info-name">Ethnicity</p> *@
-                                    @*                 <p class="info-details">Middle Eastern</p> *@
-                                    @*             </li> *@
-                                    @*         </ul> *@
-
-                                    @*     </div> *@
-                                    @* </div> *@
                                 </article>
                             </div>
                         </div>
