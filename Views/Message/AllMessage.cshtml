@@ -1,0 +1,35 @@
+﻿
+@model List<TrueMatch.Models.Data.Message>
+<section class="page-header-section style-1" style="background:url(~/assets/images/page-header.jpg)">
+    <div class="container">
+        <div class="page-header-content">
+            <div class="page-header-inner">
+                <div class="page-title">
+                    <h2>TrueMatch Find Your Dating Partner</h2>
+                </div>
+                <ol class="breadcrumb">
+                    <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+                    <li class="active">Members</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach( var msg in Model)
+        {
+            <tr>
+                <td>msg</td>
+                <td>msg.</td>
+            </tr>
+        }
+
+    </tbody>
+</table>

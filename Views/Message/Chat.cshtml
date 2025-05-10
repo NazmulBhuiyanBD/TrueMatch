@@ -1,0 +1,56 @@
+﻿@model List<TrueMatch.Models.Data.Message>
+@{
+    var currentUser = Context.Session.GetString("Email");
+    var receiverEmail = ViewBag.ReceiverEmail as string;
+}
+
+<!-- ==========Page Header Section Start Here========== -->
+<section class="page-header-section style-1" style="background:url(~/assets/images/page-header.jpg)">
+    <div class="container">
+        <div class="page-header-content">
+            <div class="page-header-inner">
+                <div class="page-title">
+                    <h2>TrueMatch Find Your Dating Partner</h2>
+                </div>
+                <ol class="breadcrumb">
+                    <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+                    <li class="active">Members</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<h2>Chat with @receiverEmail</h2>
+
+<div style="max-width:600px; margin:auto; padding:10px; border:1px solid #ccc; border-radius:10px;">
+    @foreach (var message in Model)
+    {
+        bool isSender = message.SenderEmail == currentUser;
+
+        <div style="text-align:@(isSender ? "right" : "left"); margin-bottom:10px;">
+            <div style="
+                display:inline-block;
+                padding:10px;
+                border-radius:10px;
+                background-color:@(isSender ? "#DCF8C6" : "#E6E6E6");
+color:black;
+                max-width:70%;">
+                <p class="m-0">@message.MessageText</p>
+                <small style="font-size:10px; color:gray;">@message.MsgTime.ToString("g")</small>
+            </div>
+        </div>
+    }
+</div>
+
+<form asp-action="SendMessage" method="post" style="margin-top:20px; max-width:600px; margin:auto;">
+    <input type="hidden" name="ReceiverEmail" value="@ViewBag.ReceiverEmail" />
+    @if (string.IsNullOrEmpty(ViewBag.ReceiverEmail))
+    {
+        <div class="alert alert-danger">Error: No receiver specified</div>
+    }
+    <div class="form-floating m-2">
+        <textarea class="form-control" name="MessageText" placeholder="Type your message..." required id="floatingTextarea"></textarea>
+        <label for="floatingTextarea">Message</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>

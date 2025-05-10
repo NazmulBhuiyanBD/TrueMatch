@@ -12,5 +12,6 @@ namespace TrueMatch.Models
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Message> Messages { get; set; }
     }
 }

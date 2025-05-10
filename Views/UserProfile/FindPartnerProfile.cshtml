@@ -61,11 +61,10 @@
                                 <form method="post" asp-controller="UserProfile" asp-action="Follows">
                                     <input type="hidden" name="FollowedEmail" value="@Model.Followed" />
                                     <button type="submit">Followe</button>
-                                </form>
-
-
-
-                                
+                                </form>                                
+                            </li> 
+                            <li>
+                                <a asp-action="Chat" asp-controller="Message" asp-route-withUser="@Model.Email">Message</a>
                             </li>
                         </ul>
 
