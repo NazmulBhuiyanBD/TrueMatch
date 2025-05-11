@@ -1,5 +1,5 @@
 ﻿
-@model List<TrueMatch.Models.Data.Message>
+@model List<string>
 <section class="page-header-section style-1" style="background:url(~/assets/images/page-header.jpg)">
     <div class="container">
         <div class="page-header-content">
@@ -15,19 +15,21 @@
         </div>
     </div>
 </section>
-<table class="table">
+<table class="table table-dark table-striped-columns">
     <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Email</th>
+            <th scope="col">Message</th>
         </tr>
     </thead>
     <tbody>
         @foreach( var msg in Model)
         {
             <tr>
-                <td>msg</td>
-                <td>msg.</td>
+                <td>#</td>
+                <td>@msg</td>
+                <td><a class="btn btn-primary" asp-action="Chat" asp-route-withUser="@msg"> Message</a></td>
             </tr>
         }
 
