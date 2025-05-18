@@ -71,13 +71,13 @@
                             type="button" role="tab" aria-controls="media" aria-selected="false">
                                 Post
                             </button>
-                            <button class="nav-link" id="nav-friends-tab" data-bs-toggle="tab"
-                            data-bs-target="#friends" type="button" role="tab" aria-controls="friends"
-                            aria-selected="false">
-                                Friends
-                            </button>
+                            <a asp-controller="Friend" asp-action="FriendList" class="btn btn-outline-primary">Friend List</a>
+
                             <a class="nav-link" asp-action="AllMessage" asp-controller="Message">
                                 Message
+                            </a> 
+                            <a class="nav-link" asp-action="FriendRequests" asp-controller="Friend">
+                                FriendRequest
                             </a>
 
                         </div>

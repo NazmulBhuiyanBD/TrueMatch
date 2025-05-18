@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container py-4">
+    <h1 class="text-center mt-2">Admin Panel</h1>
+    <div class="d-flex text-center">
+        <div class="col-5 shadow-lg rounded p-2">
+            <img src="~/assets/images/supports.png" alt="Support" />
+            <a area="Admin" asp-action="Complain" asp-controller="User" class="btn btn-secondary m-2">Support</a>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5 shadow-lg rounded p-2">
+            <img src="~/assets/images/users.png" alt="User List" />
+             <a asp-area="Admin" asp-controller="User" asp-action="UserList" class="btn btn-secondary m-2">User List</a>
+
+        </div>
+    </div>
+    <a asp-action="Logout" asp-area="Admin" asp-controller="Account" class="btn btn-danger mt-2">Logout</a>
+</div>

@@ -36,7 +36,8 @@ namespace TrueMatch.Models.Data
         public string? ProfileImageUrl { get; set; }
         public string? BackGroundImageUrl { get; set; }
 
-        public string? Followed { get; set; }
+        public bool status { get; set; }
+
 
     }
 }

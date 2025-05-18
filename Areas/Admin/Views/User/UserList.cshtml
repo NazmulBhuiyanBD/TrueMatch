@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "User Accounts";
+}
+@model TrueMatch.Models.ViewModels.AccountListViewModel
+
+<div class="container">
+    <h2 class="text-center mt-lg-3">User List</h2>
+
+    <form asp-action="UserList" method="get">
+        <div class="form-group text-center">
+            <input type="text" name="searchString" value="@Model.CurrentFilter"
+                   placeholder="Search users..." style="width: 500px; height: 40px; font-size: 16px; color:black" />
+            <input type="submit" value="Search" class="btn btn-primary" />
+            <a asp-action="UserList" class="btn btn-secondary">Clear</a>
+        </div>
+    </form>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success text-center mt-2">
+            @TempData["Success"]
+        </div>
+    }
+
+    <div class="mt-3 shadow-lg rounded-2 text-white">
+        <table class="table text-white">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>City</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Accounts != null && Model.Accounts.Any())
+                {
+                    foreach (var account in Model.Accounts)
+                    {
+                        <tr>
+                            <td>@account.UserName</td>
+                            <td>@account.Email</td>
+                            <td>@account.FirstName @account.LastName</td>
+                            <td>@account.Age</td>
+                            <td>@account.City</td>
+                            <td>
+                                <form asp-area="Admin" asp-controller="User" asp-action="ToggleStatus" method="post" style="display:inline;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@account.Email" />
+                                    <input type="hidden" name="status" value="@(account.status ? "false" : "true")" />
+                                    <button type="submit" class="btn @(account.status ? "btn-success" : "btn-danger")">
+                                        <i class="fa @(account.status ? "fa-check" : "fa-times")"></i>
+                                        @(account.status ? "Active" : "Inactive")
+                                    </button>
+                                </form>
+
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="text-center">No users found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

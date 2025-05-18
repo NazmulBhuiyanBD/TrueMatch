@@ -1,0 +1,42 @@
+﻿@model List<TrueMatch.Models.Data.Account>
+
+<section class="page-header-section style-1" style="background:url(~/assets/images/page-header.jpg)">
+    <div class="container">
+        <div class="page-header-content">
+            <div class="page-header-inner">
+                <div class="page-title">
+                    <h2>Your Friends</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container mt-4">
+    <table class="table table-bordered text-white">
+        <thead>
+            <tr>
+                <th>Profile</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var friend in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@friend.ProfileImageUrl" width="50" height="50" class="rounded-circle" />
+                    </td>
+                    <td>@friend.FirstName @friend.LastName</td>
+                    <td>@friend.Email</td>
+                    <td>
+                        <a asp-controller="Message" asp-action="Chat" asp-route-withUser="@friend.Email" class="btn btn-sm btn-primary">Message</a>
+                        @* <a asp-action="RemoveFriend" asp-route-email="@friend.Email" class="btn btn-sm btn-danger">Unfriend</a> *@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,41 @@
+﻿@model List<TrueMatch.Models.Data.Friend>
+
+<section class="page-header-section style-1" style="background:url(~/assets/images/page-header.jpg)">
+    <div class="container">
+        <div class="page-header-content">
+            <div class="page-header-inner">
+                <div class="page-title">
+                    <h2>TrueMatch Find Your Dating Partner</h2>
+                </div>
+                <ol class="breadcrumb">
+                    <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+                    <li class="active">Members</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="mt-2">
+    <h3>Friend Requests</h3>
+    <table class="table text-white m-2 p-3 shadow-lg border-3 rounded-3">
+        <thead>
+            <tr><th>From</th><th>Date</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var req in Model)
+            {
+                <tr>
+                    <td>@req.RequesterEmail</td>
+                    <td>@req.RequestDate.ToShortDateString()</td>
+                    <td>
+                        <form asp-action="AcceptFriendRequest" asp-controller="Friend" method="post">
+                            <input type="hidden" name="id" value="@req.Id" />
+                            <button type="submit" class="btn btn-primary">Accept</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

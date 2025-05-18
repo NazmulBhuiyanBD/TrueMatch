@@ -38,6 +38,11 @@ namespace TrueMatch.Controllers
 
             if (existingUser != null)
             {
+                if (!existingUser.status)
+                {
+                    ViewBag.LoginError = "Your account is blocked. Please contact support.";
+                    return View();
+                }
                 HttpContext.Session.SetString("Email", existingUser.Email);
                 HttpContext.Session.SetString("UserName", existingUser.UserName);
                 return RedirectToAction("Profile", "UserProfile");
@@ -81,7 +86,8 @@ namespace TrueMatch.Controllers
             {
                 UserName = userName,
                 Email = email,
-                Password = password
+                Password = password,
+                status = true
             };  
 
             _context.Accounts.Add(account);

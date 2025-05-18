@@ -1,4 +1,16 @@
-﻿    <!-- ==========Page Header Section Start Here========== -->
+﻿  @model TrueMatch.Models.Data.Complain
+
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+  <!-- ==========Page Header Section Start Here========== -->
 <section class="page-header-section style-1" style="background:url(assets/images/page-header.jpg)">
     <div class="container">
         <div class="mt-2 text-center ">
@@ -26,19 +38,23 @@
                 <div class="col-lg-8">
                     <article class="contact-form-wrapper">
                         <div class="contact-form">
-                            <h4>Don't Be A Stranger Just Say Hello.</h4>
+                            <h4>If you need any help feel free to Contact Us</h4>
                             <p class="mb-5">
-                                We do fast phone repair. In most to repair your device in just minutes,
-                                li we’ll
-                                normally get con nection inutes, we’ll normally ge.
+                                our team will response as soon as possible to solve your problem.
                             </p>
-                            <form action="#" method="POST" id="commentform" class="comment-form">
-                                <input type="text" name="name" class="" placeholder="Name*">
-                                <input type="email" name="email" class="" placeholder="Email*">
-                                <input type="text" name="sub" class="" placeholder="Subject*">
-                                <input type="text" name="number" class="" placeholder="Mobile Number*">
-                                <textarea name="text" id="role" cols="30" rows="8"
-                                          placeholder="Message*"></textarea>
+
+                            <form asp-action="ContactUs" method="post" class="comment-form">
+                                @Html.AntiForgeryToken()
+
+                                <input asp-for="Name" class="form-control mb-2 text-white" placeholder="Name*" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+
+                                <input asp-for="Subject" class="form-control mb-2 text-white" placeholder="Subject*" />
+                                <span asp-validation-for="Subject" class="text-danger"></span>
+
+                                <textarea asp-for="Message" class="form-control mb-2 text-white" rows="5" placeholder="Message*"></textarea>
+                                <span asp-validation-for="Message" class="text-danger"></span>
+                                <input type="hidden" asp-for="Email" value="@Context.Session.GetString("Email")" />
                                 <button type="submit" class="lab-btn">
                                     <span>Send Our Message</span>
                                 </button>

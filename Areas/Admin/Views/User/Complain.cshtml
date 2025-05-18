@@ -1,0 +1,47 @@
+﻿@model List<TrueMatch.Models.Data.Complain>
+@{
+    ViewData["Title"] = "Complaints";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="border-2 rounded-2">
+        <h2 class="text-center mb-4">User Complaints</h2>
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="mt-3 shadow-lg rounded-2 text-white">
+
+                <table class="table text-white">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                            <th>Submitted At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var complaint in Model)
+                        {
+                            <tr>
+                                <td>@complaint.Name</td>
+                                <td>@complaint.Email</td>
+                                <td>@complaint.Subject</td>
+                                <td>@complaint.Message</td>
+                                <td>@complaint.CreatedAt.ToLocalTime().ToString("g")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info text-center">
+                No complaints found.
+            </div>
+        }
+    </div>
+</div>
