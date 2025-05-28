@@ -1,0 +1,32 @@
+﻿@model List<TrueMatch.Models.Data.Post>
+
+<section class="story-section padding-tb bg-img mt-4">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h4>TrueMatch Success Stories</h4>
+            <h2>Sweet Stories From Our Lovers</h2>
+        </div>
+
+        <div class="row justify-content-center g-4">
+            @foreach (var post in Model)
+            {
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="story-item lab-item">
+                        <div class="lab-inner">
+                            <div class="lab-thumb">
+                                <img src="@post.ImageUrl" alt="story image" class="img-fluid" />
+                            </div>
+                            <div class="lab-content">
+                                <h4>@post.PostTitle</h4>
+                                <p>@post.Description</p>
+                                <small class="text-muted">
+                                    By @post.Account?.FirstName @post.Account?.LastName
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

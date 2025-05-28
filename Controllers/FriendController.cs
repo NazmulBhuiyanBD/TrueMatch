@@ -28,7 +28,11 @@ public class FriendController : Controller
             (f.RequesterEmail == receiverEmail && f.ReceiverEmail == senderEmail));
 
         if (alreadyRequested)
-            return Content("Friend request already sent or you are already friends.");
+        {
+            TempData["FriendRequestError"] = "Friend request already sent or you are already friends.";
+            return RedirectToAction("Profile", "UserProfile", new { email = receiverEmail });
+        }
+
 
         var friendRequest = new Friend
         {
@@ -41,7 +45,7 @@ public class FriendController : Controller
         _context.Friends.Add(friendRequest);
         _context.SaveChanges();
 
-        return RedirectToAction("Profile", "Account", new { email = receiverEmail });
+        return RedirectToAction("Profile", "UserProfile", new { email = receiverEmail });
     }
 
 

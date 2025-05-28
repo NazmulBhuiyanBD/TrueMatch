@@ -93,22 +93,31 @@ namespace TrueMatch.Controllers
             return RedirectToAction("Profile");
         }
         [HttpGet]
-        public async Task <IActionResult> FindPartner(string gender,int ageStart, int ageEnd, string city)
+        public async Task<IActionResult> FindPartner(string gender, int ageStart, int ageEnd, string city)
         {
-            string email = HttpContext.Session.GetString("Email"); // Get email again
+            string email = HttpContext.Session.GetString("Email");
             if (email == null) return RedirectToAction("Login", "Account");
 
-            var partner = await _context.Accounts.Where(b => b.Gender == gender && b.City == city && b.Age>=ageStart && b.Age <= ageEnd).ToListAsync();
-            if (partner.Any())
+            var partners = await _context.Accounts
+                .Where(b =>
+                    b.Email != email && // ✅ Exclude session user
+                    b.Gender == gender &&
+                    b.City == city &&
+                    b.Age >= ageStart &&
+                    b.Age <= ageEnd)
+                .ToListAsync();
+
+            if (partners.Any())
             {
-                return View("FindPartner", partner);
+                return View("FindPartner", partners);
             }
             else
             {
-                ViewBag.Message = "No User found from these range";
+                ViewBag.Message = "No users found within this range.";
                 return View("FindPartner", new List<Account>());
             }
         }
+
         [HttpGet]
         public async Task<IActionResult> FindPartnerProfile(string email)
         {
@@ -162,13 +171,30 @@ namespace TrueMatch.Controllers
             {
                 return RedirectToAction("Login", "UserAuth");
             }
+
             var posts = _context.Posts
-                .Include(p => p.Account) // Include the Account navigation property
-                .OrderByDescending(p => p.Id) // Newest first
+                .Where(p => p.Email == userEmail) // 🔍 Filter by logged-in user's email
+                .Include(p => p.Account)
+                .OrderByDescending(p => p.Id)
                 .ToList();
 
             return View(posts);
         }
+        [HttpPost]
+        public async Task<IActionResult> DeletePost(Guid id)
+        {
+            var email = HttpContext.Session.GetString("Email");
+            if (email == null) return RedirectToAction("Login", "Account");
+
+            var post = await _context.Posts.FirstOrDefaultAsync(p => p.Id == id && p.Email == email);
+            if (post == null) return NotFound();
+
+            _context.Posts.Remove(post);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("ShowPost");
+        }
+
 
 
 

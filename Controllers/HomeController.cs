@@ -26,10 +26,16 @@ public class HomeController : Controller
     {
         return View();
     }
-    public IActionResult Success_Stories()
+    [HttpGet]
+    public async Task<IActionResult> Stories()
     {
-        return View();
-    } 
+        var posts = await _context.Posts
+            .Include(p => p.Account) // include user info
+            .OrderByDescending(p => p.Id) // optional: newest first
+            .ToListAsync();
+
+        return View(posts);
+    }
     public IActionResult AboutUs()
     {
         return View();

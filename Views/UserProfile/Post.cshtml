@@ -14,21 +14,38 @@
         </div>
     </div>
 </section>
-<div class="m-3 p-3">
-    <form asp-action="UserPost" asp-controller="UserProfile" method="post" enctype="multipart/form-data" class="container mt-4">
-        <input type="hidden" name="Email" value="@Model" />
-        <div class="mb-3">
-            <label>Post Title</label>
-            <input name="PostTitle" class="form-control" />
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-primary text-white text-center rounded-top-4">
+                    <h4 class="mb-0">Create a New Post</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="UserPost" asp-controller="UserProfile" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="Email" value="@Model" />
+
+                        <div class="mb-3">
+                            <label for="PostTitle" class="form-label fw-bold">Post Title</label>
+                            <input type="text" name="PostTitle" id="PostTitle" class="form-control rounded-3" placeholder="Enter post title" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Description" class="form-label fw-bold">Description</label>
+                            <textarea name="Description" id="Description" class="form-control rounded-3" rows="4" placeholder="Write something interesting..." required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="ImageFile" class="form-label fw-bold">Upload an Image</label>
+                            <input type="file" name="ImageFile" id="ImageFile" class="form-control rounded-3" />
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success px-5 rounded-pill shadow-sm">Publish Post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label>Description</label>
-            <textarea name="Description" class="form-control" rows="3"></textarea>
-        </div>
-        <div class="mb-3">
-            <label>Profile Image:</label>
-            <input type="file" name="ImageFile" class="form-control" />
-        </div>
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form>
+    </div>
 </div>
