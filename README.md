@@ -75,8 +75,8 @@ TrueMatch/
 ### User Interface
 
 #### Login/Signup
-![Login/Signup](ScreenShot/login.png)
-![Login/Signup](ScreenShot/signup.png)
+![Login](ScreenShot/login.png)
+![Signup](ScreenShot/signup.png)
 
 #### Profile Page
 ![Profile Page](/ScreenShot/Profile.png)
