@@ -105,7 +105,7 @@ TrueMatch/
 ![Admin Login](Screenshot/adminLogin.png)
 
 #### Admin Panel
-![Admin Panel](Screenshot/chat.png)
+![Admin Panel](Screenshot/AdminPanel.png)
 ![User Complain](Screenshot/UserComplain.png)
 ![User List](Screenshot/userlist.png)
 
