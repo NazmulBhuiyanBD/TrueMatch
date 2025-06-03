@@ -75,39 +75,39 @@ TrueMatch/
 ### User Interface
 
 #### Login/Signup
-![Login Page](ScreenShot/login.png)
+![Login Page](/ScreenShot/login.png)
 ![Signup Page](ScreenShot/signup.png)
 
 #### Profile Page
-![Profile Page](ScreenShot/Profile.png)
-![Update Profile Page](ScreenShot/UpdateProfile.png)
-![Updated Profile Page](ScreenShot/UpdatedProfile.png)
+![Profile Page](/ScreenShot/Profile.png)
+![Update Profile Page](/ScreenShot/UpdateProfile.png)
+![Updated Profile Page](/ScreenShot/UpdatedProfile.png)
 
 #### User Post
-![Post Page](ScreenShot/Post.png)
-![User Post](ScreenShot/UserPost.png)
+![Post Page](/ScreenShot/Post.png)
+![User Post](/ScreenShot/UserPost.png)
 
 #### Search User
-![Search Home](ScreenShot/SearchHome.png)
-![Search Result](ScreenShot/SearchResult.png)
+![Search Home](/ScreenShot/SearchHome.png)
+![Search Result](/ScreenShot/SearchResult.png)
 
 #### Friend
-![Friend](ScreenShot/friend.png)
-![Friend Search Result](ScreenShot/SearchResult.png)
+![Friend](/ScreenShot/friend.png)
+![Friend Search Result](/ScreenShot/SearchResult.png)
 
 #### Message
-![Message](ScreenShot/message.png)
-![Message Chat](ScreenShot/chat.png)
+![Message](/ScreenShot/message.png)
+![Message Chat](/ScreenShot/chat.png)
 
 ### Admin Interface
 
 #### Login
-![Admin Login](ScreenShot/adminLogin.png)
+![Admin Login](/ScreenShot/adminLogin.png)
 
 #### Admin Panel
-![Admin Panel](ScreenShot/AdminPanel.png)
-![User Complain](ScreenShot/UserComplain.png)
-![User List](ScreenShot/userlist.png)
+![Admin Panel](/ScreenShot/AdminPanel.png)
+![User Complain](/ScreenShot/UserComplain.png)
+![User List](/ScreenShot/userlist.png)
 
 
 
